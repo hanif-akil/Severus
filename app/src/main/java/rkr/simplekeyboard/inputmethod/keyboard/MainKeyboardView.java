@@ -51,9 +51,11 @@ import rkr.simplekeyboard.inputmethod.latin.Subtype;
 import rkr.simplekeyboard.inputmethod.latin.RichInputMethodManager;
 import rkr.simplekeyboard.inputmethod.latin.common.Constants;
 import rkr.simplekeyboard.inputmethod.latin.common.CoordinateUtils;
+import rkr.simplekeyboard.inputmethod.latin.common.CoordinateUtils;
 import rkr.simplekeyboard.inputmethod.latin.utils.LanguageOnSpacebarUtils;
 import rkr.simplekeyboard.inputmethod.latin.utils.LocaleResourceUtils;
 import rkr.simplekeyboard.inputmethod.latin.utils.TypefaceUtils;
+import rkr.simplekeyboard.inputmethod.latin.ClipboardHistory;
 
 /**
  * A view that is responsible for detecting key presses and touch movements.
@@ -102,6 +104,9 @@ public final class MainKeyboardView extends KeyboardView implements MoreKeysPane
 
     private final TimerHandler mTimerHandler;
     private final int mLanguageOnSpacebarHorizontalMargin;
+
+    // Clipboard history panel
+    private ClipboardHistoryView mClipboardHistoryView;
 
     public MainKeyboardView(final Context context, final AttributeSet attrs) {
         this(context, attrs, R.attr.mainKeyboardViewStyle);
@@ -505,6 +510,39 @@ public final class MainKeyboardView extends KeyboardView implements MoreKeysPane
     public void closing() {
         cancelAllOngoingEvents();
         mMoreKeysKeyboardCache.clear();
+        dismissClipboardHistoryPanel();
+    }
+
+    public void toggleClipboardHistoryPanel() {
+        if (mClipboardHistoryView != null && mClipboardHistoryView.isShowing()) {
+            dismissClipboardHistoryPanel();
+        } else {
+            showClipboardHistoryPanel();
+        }
+    }
+
+    private void showClipboardHistoryPanel() {
+        if (mClipboardHistoryView == null) {
+            mClipboardHistoryView = (ClipboardHistoryView) LayoutInflater.from(getContext())
+                    .inflate(R.layout.clipboard_history_panel, null);
+            mClipboardHistoryView.setListener(mKeyboardActionListener);
+        }
+        final DrawingPreviewPlacerView placerView = mDrawingPreviewPlacerView;
+        if (placerView != null) {
+            locatePreviewPlacerView();
+            final Keyboard keyboard = getKeyboard();
+            if (keyboard != null) {
+                final int height = keyboard.mOccupiedHeight + getPaddingTop();
+                mClipboardHistoryView.setY(height - mClipboardHistoryView.getMeasuredHeight());
+            }
+            mClipboardHistoryView.show(placerView);
+        }
+    }
+
+    private void dismissClipboardHistoryPanel() {
+        if (mClipboardHistoryView != null) {
+            mClipboardHistoryView.dismiss();
+        }
     }
 
     public void onHideWindow() {

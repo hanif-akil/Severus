@@ -110,6 +110,11 @@
         latin:keyActionFlags="noKeyPreview|altCodeWhileTyping|enableLongPress"
         latin:altCode="!code/key_space" />
     <key-style
+        latin:styleName="clipboardHistoryKeyStyle"
+        latin:keySpec="!icon/clipboard_history_key|!code/key_clipboard_history"
+        latin:keyActionFlags="noKeyPreview"
+        latin:backgroundType="functional" />
+    <key-style
         latin:styleName="tabKeyStyle"
         latin:keySpec="!icon/tab_key|!code/key_tab"
         latin:backgroundType="functional" />

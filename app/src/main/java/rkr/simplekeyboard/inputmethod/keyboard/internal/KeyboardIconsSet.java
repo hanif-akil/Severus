@@ -52,6 +52,7 @@ public final class KeyboardIconsSet {
     public static final String NAME_LANGUAGE_SWITCH_KEY = "language_switch_key";
     public static final String NAME_ZWNJ_KEY = "zwnj_key";
     public static final String NAME_ZWJ_KEY = "zwj_key";
+    public static final String NAME_CLIPBOARD_HISTORY_KEY = "clipboard_history_key";
 
     private static final SparseIntArray ATTR_ID_TO_ICON_ID = new SparseIntArray();
 
@@ -78,6 +79,7 @@ public final class KeyboardIconsSet {
         NAME_LANGUAGE_SWITCH_KEY,         R.drawable.sym_keyboard_language_switch,
         NAME_ZWNJ_KEY,                    R.drawable.sym_keyboard_zwnj,
         NAME_ZWJ_KEY,                     R.drawable.sym_keyboard_zwj,
+        NAME_CLIPBOARD_HISTORY_KEY,       R.drawable.sym_keyboard_clipboard,
     };
 
     private static final int NUM_ICONS = NAMES_AND_ATTR_IDS.length / 2;

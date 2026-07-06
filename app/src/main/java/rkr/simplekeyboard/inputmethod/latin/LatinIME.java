@@ -60,8 +60,7 @@ import rkr.simplekeyboard.inputmethod.keyboard.Keyboard;
 import rkr.simplekeyboard.inputmethod.keyboard.KeyboardActionListener;
 import rkr.simplekeyboard.inputmethod.keyboard.KeyboardId;
 import rkr.simplekeyboard.inputmethod.keyboard.KeyboardSwitcher;
-import rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView;
-import rkr.simplekeyboard.inputmethod.latin.common.Constants;
+import rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView;import rkr.simplekeyboard.inputmethod.latin.common.Constants;
 import rkr.simplekeyboard.inputmethod.latin.define.DebugFlags;
 import rkr.simplekeyboard.inputmethod.latin.inputlogic.InputLogic;
 import rkr.simplekeyboard.inputmethod.latin.settings.Settings;
@@ -258,6 +257,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         mRichImm.setSubtypeChangeHandler(this);
         KeyboardSwitcher.init(this);
         AudioAndHapticFeedbackManager.init(this);
+        ClipboardHistory.getInstance(this);
         super.onCreate();
 
         // TODO: Resolve mutual dependencies of {@link #loadSettings()} and
@@ -701,6 +701,14 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     @Override
     public void onUpWithSpacePointerActive() {
         mInputLogic.reloadTextCache();
+    }
+
+    @Override
+    public void onToggleClipboardHistory() {
+        final MainKeyboardView keyboardView = mKeyboardSwitcher.getMainKeyboardView();
+        if (keyboardView != null) {
+            keyboardView.toggleClipboardHistoryPanel();
+        }
     }
 
     private boolean isShowingOptionDialog() {

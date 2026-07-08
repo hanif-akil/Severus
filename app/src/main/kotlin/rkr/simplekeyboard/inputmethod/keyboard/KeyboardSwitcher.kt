@@ -74,7 +74,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         mKeyboardLayoutSet = builder.build()
         try {
             mState.onLoadKeyboard(currentAutoCapsState, currentRecapitalizeState)
-            mKeyboardTextsSet.setLocale(mRichImm!!.getCurrentSubtype().localeObject, mThemeContext!!)
+            mKeyboardTextsSet.setLocale(mRichImm!!.getCurrentSubtype().localeObject!!, mThemeContext!!)
         } catch (e: KeyboardLayoutSet.KeyboardLayoutSetException) {
             Log.w(TAG, "loading keyboard failed: ${e.mKeyboardId}", e.cause)
         }

@@ -42,7 +42,7 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
         var mKeyboardBottomOffset = 0
         var mShowMoreKeys = false
         var mShowNumberRow = false
-        val mKeyboardLayoutSetElementIdToParamsMap = SparseArray<ElementParams>()
+        internal val mKeyboardLayoutSetElementIdToParamsMap = SparseArray<ElementParams>()
     }
 
     fun getKeyboard(baseKeyboardLayoutSetElementId: Int): Keyboard {
@@ -117,9 +117,9 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
         private fun parseKeyboardLayoutSet(res: Resources, resId: Int) {
             val parser = res.getXml(resId)
             try {
-                while (parser.eventType != android.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
+                while (parser.eventType != org.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
                     val event = parser.next()
-                    if (event == android.xmlpull.v1.XmlPullParser.START_TAG) {
+                    if (event == org.xmlpull.v1.XmlPullParser.START_TAG) {
                         val tag = parser.name
                         if (TAG_KEYBOARD_SET == tag) parseKeyboardLayoutSetContent(parser)
                         else throw XmlParseUtils.IllegalStartTag(parser, tag, TAG_KEYBOARD_SET)
@@ -128,20 +128,20 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
             } finally { parser.close() }
         }
 
-        private fun parseKeyboardLayoutSetContent(parser: android.xmlpull.v1.XmlPullParser) {
-            while (parser.eventType != android.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
+        private fun parseKeyboardLayoutSetContent(parser: org.xmlpull.v1.XmlPullParser) {
+            while (parser.eventType != org.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
                 val event = parser.next()
-                if (event == android.xmlpull.v1.XmlPullParser.START_TAG) {
+                if (event == org.xmlpull.v1.XmlPullParser.START_TAG) {
                     if (TAG_ELEMENT == parser.name) parseKeyboardLayoutSetElement(parser)
                     else throw XmlParseUtils.IllegalStartTag(parser, parser.name, TAG_KEYBOARD_SET)
-                } else if (event == android.xmlpull.v1.XmlPullParser.END_TAG) {
+                } else if (event == org.xmlpull.v1.XmlPullParser.END_TAG) {
                     if (TAG_KEYBOARD_SET == parser.name) break
                     throw XmlParseUtils.IllegalEndTag(parser, parser.name, TAG_KEYBOARD_SET)
                 }
             }
         }
 
-        private fun parseKeyboardLayoutSetElement(parser: android.xmlpull.v1.XmlPullParser) {
+        private fun parseKeyboardLayoutSetElement(parser: org.xmlpull.v1.XmlPullParser) {
             val a = mResources.obtainAttributes(Xml.asAttributeSet(parser), R.styleable.KeyboardLayoutSet_Element)
             try {
                 XmlParseUtils.checkAttributeExists(a, R.styleable.KeyboardLayoutSet_Element_elementName, "elementName", TAG_ELEMENT, parser)

@@ -22,17 +22,18 @@ class KeyPreviewDrawParams {
     var mPreviewOffset = 0
     var mMinPreviewWidth = 0
 
-    private var mPopupEnabled = false
+    private var mPopupEnabled = true
     private var mPopupDismissDelay = 0
 
     constructor()
 
     constructor(keyboardViewAttr: TypedArray) {
-        mPopupEnabled = keyboardViewAttr.getBoolean(R.styleable.MainKeyboardView_keyPreviewPopupEnabled, false)
-        mPopupDismissDelay = keyboardViewAttr.getInt(R.styleable.MainKeyboardView_keyPreviewPopupDismissDelay, 0)
-        mPreviewOffset = keyboardViewAttr.getDimensionPixelOffset(R.styleable.MainKeyboardView_previewOffset, 0)
-        mMinPreviewWidth = keyboardViewAttr.getDimensionPixelSize(R.styleable.MainKeyboardView_previewMinWidth, 0)
+        mPopupEnabled = true
+        mPopupDismissDelay = keyboardViewAttr.getInt(R.styleable.MainKeyboardView_keyPreviewLingerTimeout, 0)
+        mPreviewOffset = keyboardViewAttr.getDimensionPixelOffset(R.styleable.MainKeyboardView_keyPreviewOffset, 0)
+        mMinPreviewWidth = keyboardViewAttr.getDimensionPixelSize(R.styleable.MainKeyboardView_keyPreviewWidth, 0)
         mPreviewBackgroundResId = keyboardViewAttr.getResourceId(R.styleable.MainKeyboardView_keyPreviewBackground, 0)
+        mPreviewHeight = keyboardViewAttr.getDimensionPixelSize(R.styleable.MainKeyboardView_keyPreviewHeight, 0)
     }
 
     fun setPopupEnabled(popupEnabled: Boolean, delay: Int) {

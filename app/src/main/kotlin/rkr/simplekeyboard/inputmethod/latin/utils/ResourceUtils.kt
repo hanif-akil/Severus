@@ -84,7 +84,7 @@ object ResourceUtils {
     fun getDimensionOrFraction(a: TypedArray, index: Int, base: Float, defValue: Float): Float {
         val value = a.peekValue(index) ?: return defValue
         return when {
-            isFractionValue(value) -> value.getFraction(index, base, base)
+            isFractionValue(value) -> value.getFraction(index, base.toInt(), base.toInt())
             isDimensionValue(value) -> a.getDimension(index, defValue)
             else -> defValue
         }

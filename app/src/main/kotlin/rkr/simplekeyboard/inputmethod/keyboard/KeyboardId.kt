@@ -9,7 +9,7 @@ import rkr.simplekeyboard.inputmethod.latin.utils.InputTypeUtils
 import java.util.Arrays
 import java.util.Locale
 
-class KeyboardId(
+internal class KeyboardId(
     val mElementId: Int,
     params: KeyboardLayoutSet.Params
 ) {

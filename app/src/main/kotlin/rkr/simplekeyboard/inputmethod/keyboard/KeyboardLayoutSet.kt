@@ -24,7 +24,7 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
 
     class KeyboardLayoutSetException(cause: Throwable, val mKeyboardId: KeyboardId) : RuntimeException(cause)
 
-    private class ElementParams {
+    internal class ElementParams {
         var mKeyboardXmlId = 0
         var mAllowRedundantMoreKeys = false
     }

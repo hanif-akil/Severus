@@ -13,11 +13,13 @@ class ThemeSettingsFragment : SubScreenFragment(), OnRadioButtonClickedListener 
     private var mSelectedThemeId = 0
 
     internal class KeyboardThemePreference(context: Context, name: String, val mThemeId: Int) : Preference(context) {
+        private var mSelected = false
         init {
             title = name
         }
         fun setSelected(selected: Boolean) {
-            isChecked = selected
+            mSelected = selected
+            summary = if (selected) "Selected" else null
         }
     }
 

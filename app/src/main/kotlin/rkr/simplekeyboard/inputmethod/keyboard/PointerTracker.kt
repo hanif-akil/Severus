@@ -170,7 +170,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
     private fun onMoveEventInternal(x: Int, y: Int, eventTime: Long) {
         val oldKey = mCurrentKey
         val settings = Settings.getInstance().current
-        if (oldKey != null && oldKey.getCode() == Constants.CODE_SPACE && settings.mSpaceSwipeEnabled) {
+        if (oldKey != null && oldKey.getCode() == Constants.CODE_SPACE && settings!!.mSpaceSwipeEnabled) {
             val steps = (x - mStartX) / sPointerStep
             val swipeIgnoreTime = settings.mKeyLongpressTimeout / MULTIPLIER_FOR_LONG_PRESS_TIMEOUT_IN_SLIDING_INPUT
             if (steps != 0 && mStartTime + swipeIgnoreTime < System.currentTimeMillis()) {
@@ -180,7 +180,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
             }
             return
         }
-        if (oldKey != null && oldKey.getCode() == Constants.CODE_DELETE && settings.mDeleteSwipeEnabled) {
+        if (oldKey != null && oldKey.getCode() == Constants.CODE_DELETE && settings!!.mDeleteSwipeEnabled) {
             val steps = (x - mStartX) / sPointerStep
             if (steps != 0) {
                 sTimerProxy.cancelKeyTimersOf(this)
@@ -343,7 +343,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
 
     private fun getLongPressTimeout(code: Int): Int {
         if (code == Constants.CODE_SHIFT) return sParams.mLongPressShiftLockTimeout
-        val longpressTimeout = Settings.getInstance().current.mKeyLongpressTimeout
+        val longpressTimeout = Settings.getInstance().current!!.mKeyLongpressTimeout
         if (mIsInSlidingKeyInput || code == Constants.CODE_SPACE) return longpressTimeout * MULTIPLIER_FOR_LONG_PRESS_TIMEOUT_IN_SLIDING_INPUT
         return longpressTimeout
     }

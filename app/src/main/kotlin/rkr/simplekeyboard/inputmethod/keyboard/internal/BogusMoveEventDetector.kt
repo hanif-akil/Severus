@@ -25,6 +25,10 @@ class BogusMoveEventDetector {
         mLastMoveEventTime = 0
     }
 
+    fun hasTraveledLongDistance(x: Int, y: Int): Boolean = false
+
+    fun setKeyboardGeometry(width: Int, height: Int) { }
+
     companion object {
         private const val MAX_TIME_TO_DETECT_BOGUS_MOVE_EVENT = 50L
         private const val MIN_TIME_INTERVAL_TO_CONSIDER_BOUGUS_MOVE_EVENT = 10L

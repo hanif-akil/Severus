@@ -10,9 +10,17 @@ class DrawingPreviewPlacerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
 ) : View(context, attrs, defStyle) {
 
+    private var mKeyboardViewGeometry = IntArray(2)
+
     override fun dispatchDraw(canvas: Canvas) {
         // Do not draw anything.
     }
+
+    fun setKeyboardViewGeometry(originCoords: IntArray) {
+        mKeyboardViewGeometry = originCoords.copyOf()
+    }
+
+    fun getKeyboardViewGeometry(): IntArray = mKeyboardViewGeometry
 
     fun placeViewAt(view: View, x: Int, y: Int, width: Int, height: Int) {
         val lp = view.layoutParams

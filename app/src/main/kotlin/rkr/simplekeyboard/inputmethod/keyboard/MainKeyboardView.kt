@@ -220,7 +220,7 @@ class MainKeyboardView @JvmOverloads constructor(
     }
 
     override fun onDrawKeyTopVisuals(key: Key, canvas: Canvas, paint: Paint, params: KeyDrawParams) {
-        if (key.altCodeWhileTyping()) params.mAnimAlpha = mAltCodeKeyWhileTypingAnimAlpha
+        if (key.altCodeWhileTyping) params.mAnimAlpha = mAltCodeKeyWhileTypingAnimAlpha
         super.onDrawKeyTopVisuals(key, canvas, paint, params)
         if (key.getCode() == Constants.CODE_SPACE) { val imm = RichInputMethodManager.getInstance(); if (imm.hasMultipleEnabledSubtypes()) drawLanguageOnSpacebar(key, canvas, paint) }
     }

@@ -67,7 +67,7 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
             return cachedKeyboard
         }
 
-        val builder = KeyboardBuilder(mContext, KeyboardParams(sUniqueKeysCache))
+        val builder = KeyboardBuilder(mContext, KeyboardParams())
         sUniqueKeysCache.setEnabled(id.isAlphabetKeyboard())
         builder.setAllowRedundantMoreKes(elementParams.mAllowRedundantMoreKeys)
         builder.load(elementParams.mKeyboardXmlId, id)

@@ -22,7 +22,7 @@ class KeyPreviewView @JvmOverloads constructor(
     }
 
     fun setPreviewVisual(key: Key, iconsSet: KeyboardIconsSet, drawParams: KeyDrawParams, backgroundColor: Int) {
-        val iconId = key.iconId
+        val iconId = key.getIconId()
         if (iconId != KeyboardIconsSet.ICON_UNDEFINED) {
             setCompoundDrawables(null, null, null, key.getPreviewIcon(iconsSet))
             setText(null)
@@ -32,7 +32,7 @@ class KeyPreviewView @JvmOverloads constructor(
         setTextColor(drawParams.mPreviewTextColor)
         setTextSize(TypedValue.COMPLEX_UNIT_PX, key.selectPreviewTextSize(drawParams).toFloat())
         typeface = key.selectPreviewTypeface(drawParams)
-        setTextAndScaleX(key.previewLabel)
+        setTextAndScaleX(key.getLabel())
         setColor(backgroundColor)
     }
 

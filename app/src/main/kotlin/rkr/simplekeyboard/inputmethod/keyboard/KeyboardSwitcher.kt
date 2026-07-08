@@ -42,7 +42,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
 
     fun onConfigurationChanged() {
         mKeyboardTheme = KeyboardTheme.getKeyboardTheme(mLatinIME!!)
-        mThemeContext = ContextThemeWrapper(mLatinIME, mKeyboardTheme!!.mStyleId)
+        mThemeContext = ContextThemeWrapper(mLatinIME!!, mKeyboardTheme!!.mStyleId)
         KeyboardLayoutSet.onKeyboardThemeChanged()
         if (mKeyboardView != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
             mLatinIME!!.setInputView(onCreateInputView())
@@ -62,7 +62,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
     fun loadKeyboard(editorInfo: EditorInfo, settingsValues: SettingsValues, currentAutoCapsState: Int, currentRecapitalizeState: Int) {
         val builder = KeyboardLayoutSet.Builder(mThemeContext!!, editorInfo)
         val res = mThemeContext!!.resources
-        val keyboardWidth = mLatinIME!!.maxWidth
+        val keyboardWidth = mLatinIME!!.getMaxWidth()
         val keyboardHeight = ResourceUtils.getKeyboardHeight(res, settingsValues)
         val keyboardBottomOffset = ResourceUtils.getKeyboardBottomOffset(res, settingsValues)
         builder.setKeyboardTheme(mKeyboardTheme!!.mThemeId)
@@ -152,7 +152,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
     fun onCreateInputView(): View {
         mKeyboardView?.closing()
         updateKeyboardThemeAndContextThemeWrapper(mLatinIME!!, KeyboardTheme.getKeyboardTheme(mLatinIME!!))
-        val currentInputView = LayoutInflater.from(mThemeContext).inflate(R.layout.input_view, null) as InputView
+        val currentInputView = LayoutInflater.from(mThemeContext!!).inflate(R.layout.input_view, null) as InputView
         mKeyboardView = currentInputView.findViewById(R.id.keyboard_view)
         mKeyboardView!!.setKeyboardActionListener(mLatinIME!!)
         return currentInputView

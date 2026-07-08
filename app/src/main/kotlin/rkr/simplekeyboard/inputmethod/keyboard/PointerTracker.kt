@@ -54,7 +54,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
                 if (shiftKey != key) sDrawingProxy.onKeyReleased(shiftKey, false)
             }
         }
-        if (key.altCodeWhileTyping()) {
+        if (key.altCodeWhileTyping) {
             val altCode = key.getAltCode()
             val altKey = mKeyboard!!.getKey(altCode)
             if (altKey != null) sDrawingProxy.onKeyReleased(altKey, false)
@@ -72,7 +72,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
                 if (shiftKey != key) sDrawingProxy.onKeyPressed(shiftKey, false)
             }
         }
-        if (key.altCodeWhileTyping() && sTimerProxy.isTypingState()) {
+        if (key.altCodeWhileTyping && sTimerProxy.isTypingState()) {
             val altCode = key.getAltCode()
             val altKey = mKeyboard!!.getKey(altCode)
             if (altKey != null) sDrawingProxy.onKeyPressed(altKey, false)
@@ -386,7 +386,7 @@ class PointerTracker private constructor(val mPointerId: Int) : PointerTrackerQu
 
     private fun callListenerOnCodeInput(key: Key, primaryCode: Int, x: Int, y: Int, isKeyRepeat: Boolean) {
         val ignoreModifierKey = mIsInDraggingFinger && key.isModifier
-        val altersCode = key.altCodeWhileTyping() && sTimerProxy.isTypingState()
+        val altersCode = key.altCodeWhileTyping && sTimerProxy.isTypingState()
         val code = if (altersCode) key.getAltCode() else primaryCode
         if (ignoreModifierKey) return
         if (code == Constants.CODE_OUTPUT_TEXT) sListener.onTextInput(key.getOutputText()!!)

@@ -71,7 +71,7 @@ class ClipboardHistoryView @JvmOverloads constructor(
 
     private fun refreshItems(history: ClipboardHistory) {
         if (mListView == null) return
-        val items = history.items
+        val items = history.getItems()
         mListView!!.removeAllViews()
         if (items.isEmpty()) {
             mEmptyView?.visibility = View.VISIBLE

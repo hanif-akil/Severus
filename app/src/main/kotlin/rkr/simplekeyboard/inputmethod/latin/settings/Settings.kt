@@ -64,7 +64,7 @@ class Settings private constructor() : BroadcastReceiver(), SharedPreferences.On
         mSettingsValues = SettingsValues(mPrefs!!, mRes!!, inputAttributes)
     }
 
-    fun getCurrent(): SettingsValues? = mSettingsValues
+    val current: SettingsValues? get() = mSettingsValues
 
     companion object {
         private const val TAG = "Settings"

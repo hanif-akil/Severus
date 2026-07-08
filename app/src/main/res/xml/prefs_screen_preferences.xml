@@ -52,4 +52,15 @@
         android:key="pref_delete_swipe"
         android:title="@string/delete_swipe"
         android:defaultValue="false" />
+    <SwitchPreference
+        android:key="pref_show_toolbar"
+        android:title="@string/show_toolbar"
+        android:defaultValue="true" />
+    <ListPreference
+        android:key="pref_clipboard_max_items"
+        android:title="@string/clipboard_max_items"
+        android:entries="@array/clipboard_max_items_entries"
+        android:entryValues="@array/clipboard_max_items_values"
+        android:defaultValue="10"
+        android:persistent="true" />
 </PreferenceScreen>

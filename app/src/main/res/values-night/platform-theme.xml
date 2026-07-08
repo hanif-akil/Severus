@@ -19,14 +19,6 @@
 -->
 
 <resources>
-    <style name="platformSettingsTheme" parent="@android:style/Theme.Material.NoActionBar">
-        <item name="android:colorPrimary">#8AB4F8</item>
-        <item name="android:colorAccent">#8AB4F8</item>
-        <item name="android:windowBackground">#FF1F1F1F</item>
-        <item name="android:statusBarColor">#FF1F1F1F</item>
-    </style>
-    <style name="platformDialogTheme" parent="@android:style/Theme.Material.Dialog">
-        <item name="android:colorPrimary">#8AB4F8</item>
-        <item name="android:colorAccent">#8AB4F8</item>
-    </style>
+    <style name="platformSettingsTheme" parent="@android:style/Theme.Material" />
+    <style name="platformDialogTheme" parent="@android:style/Theme.DeviceDefault.Dialog" />
 </resources>

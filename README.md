@@ -1,15 +1,14 @@
-# Severus
+# Simple Keyboard
+
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/simple-keyboard/localized.svg)](https://crowdin.com/project/simple-keyboard)
 
 <img src="images/screenshot-0.png"
       alt="closeup"
       width="500"/>
-
+      
 ## About
 
-A lightweight, minimal Android keyboard focused on simplicity and performance.
-
-### Features
-
+Features:
 - Small size (<1MB)
 - Adjustable keyboard height for more screen space
 - Number row
@@ -19,36 +18,23 @@ A lightweight, minimal Android keyboard focused on simplicity and performance.
 - Minimal permissions (only Vibrate)
 - Ads-free
 
-### What it doesn't have
-
+Feature it doesn't have and probably will never have:
 - Emojis
 - GIFs
 - Spell checker
 - Swipe typing
 
-## Building
+## Downloads
 
-### Prerequisites
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get it on F-Droid"
+      height="80">](https://f-droid.org/packages/rkr.simplekeyboard.inputmethod/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+      alt="Get it on Google Play"
+      height="80">](https://play.google.com/store/apps/details?id=rkr.simplekeyboard.inputmethod)
 
-- JDK 17+
-- Android SDK (set `ANDROID_HOME` environment variable)
+## Credits
 
-### Build
+Licensed under Apache License Version 2
 
-```bash
-# Debug APK
-./gradlew assembleDebug
-
-# Release APK
-./gradlew assembleRelease
-```
-
-Output APKs:
-- Debug: `app/build/outputs/apk/debug/app-debug.apk`
-- Release: `app/build/outputs/apk/release/app-release-unsigned.apk`
-
-## License
-
-Licensed under Apache License Version 2.0
-
-Based on AOSP LatinIME keyboard. Original source: https://android.googlesource.com/platform/packages/inputmethods/LatinIME/
+This keyboard is based on AOSP LatinIME keyboard. You can get the original source code in https://android.googlesource.com/platform/packages/inputmethods/LatinIME/

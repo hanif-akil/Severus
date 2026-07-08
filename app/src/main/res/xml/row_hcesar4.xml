@@ -25,11 +25,8 @@
         latin:keyWidth="10%p"
     >
         <Key
-            latin:keyStyle="clipboardHistoryKeyStyle"
-            latin:keyWidth="10%p" />
-        <Key
             latin:keyStyle="toSymbolKeyStyle"
-            latin:keyWidth="10%p" />
+            latin:keyWidth="15%p" />
         <Key
             latin:keySpec="y"
             latin:moreKeys="!icon/settings_key|!code/key_settings" />

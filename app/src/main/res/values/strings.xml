@@ -127,4 +127,6 @@
     <string name="change_keyboard">Change keyboard</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="license">License</string>
+    <string name="show_toolbar">Show toolbar</string>
+    <string name="clipboard_max_items">Maximum clipboard items</string>
 </resources>

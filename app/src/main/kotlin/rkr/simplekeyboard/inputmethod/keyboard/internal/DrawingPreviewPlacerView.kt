@@ -8,9 +8,17 @@ import android.view.ViewGroup
 
 class DrawingPreviewPlacerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
-) : View(context, attrs, defStyle) {
+) : ViewGroup(context, attrs, defStyle) {
 
     private var mKeyboardViewGeometry = IntArray(2)
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        setMeasuredDimension(0, 0)
+    }
+
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        // Do not lay out anything.
+    }
 
     override fun dispatchDraw(canvas: Canvas) {
         // Do not draw anything.

@@ -5,4 +5,9 @@ interface DrawingProxy {
     fun getKeyPreviewDrawParams(): KeyPreviewDrawParams
     fun getKeyDrawParams(): KeyDrawParams
     fun getKeyPreviewChoreographer(): KeyPreviewChoreographer
+
+    companion object {
+        const val FADE_IN = 0
+        const val FADE_OUT = 1
+    }
 }

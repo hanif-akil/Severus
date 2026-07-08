@@ -3,6 +3,7 @@ package rkr.simplekeyboard.inputmethod.keyboard
 import android.animation.AnimatorInflater
 import android.animation.ObjectAnimator
 import android.content.Context
+import rkr.simplekeyboard.inputmethod.latin.Subtype
 import android.content.pm.PackageManager
 import android.graphics.Canvas
 import android.graphics.Color
@@ -91,7 +92,7 @@ class MainKeyboardView @JvmOverloads constructor(
         animator.setTarget(target); return animator
     }
 
-    override fun startWhileTypingAnimation(fadeInOrOut: Int) {
+    fun startWhileTypingAnimation(fadeInOrOut: Int) {
         when (fadeInOrOut) {
             DrawingProxy.FADE_IN -> cancelAndStartAnimators(mAltCodeKeyWhileTypingFadeoutAnimator, mAltCodeKeyWhileTypingFadeinAnimator)
             DrawingProxy.FADE_OUT -> cancelAndStartAnimators(mAltCodeKeyWhileTypingFadeinAnimator, mAltCodeKeyWhileTypingFadeoutAnimator)
@@ -102,7 +103,7 @@ class MainKeyboardView @JvmOverloads constructor(
 
     override fun getKeyPreviewDrawParams(): KeyPreviewDrawParams = mKeyPreviewDrawParams
     override fun getKeyPreviewChoreographer(): KeyPreviewChoreographer = mKeyPreviewChoreographer
-    override fun getKeyDrawParams(): KeyDrawParams = super.getKeyDrawParams()
+    override fun invalidateKey(key: Key) { super.invalidateKey(key) }
 
     override fun setKeyboard(keyboard: Keyboard) {
         mTimerHandler.cancelLongPressTimers()
@@ -123,12 +124,12 @@ class MainKeyboardView @JvmOverloads constructor(
         windowContentView.addView(mDrawingPreviewPlacerView)
     }
 
-    override fun onKeyPressed(key: Key, withPreview: Boolean) { key.onPressed(); invalidateKey(key); if (withPreview && !key.noKeyPreview) showKeyPreview(key) }
+    fun onKeyPressed(key: Key, withPreview: Boolean) { key.onPressed(); invalidateKey(key); if (withPreview && !key.noKeyPreview) showKeyPreview(key) }
 
     private fun showKeyPreview(key: Key) {
         val keyboard = getKeyboard() ?: return
         val previewParams = mKeyPreviewDrawParams
-        if (!previewParams.isPopupEnabled()) { previewParams.setVisibleOffset(-Math.round(keyboard.mVerticalGap)); return }
+        if (!previewParams.isPopupEnabled()) { previewParams.mPreviewOffset = -Math.round(keyboard.mVerticalGap); return }
         locatePreviewPlacerView(); getLocationInWindow(mOriginCoords)
         val backgroundColor = if (mTheme?.mCustomColorSupport == true) mCustomColor else Color.TRANSPARENT
         mKeyPreviewChoreographer.placeAndShowKeyPreview(key, keyboard.mIconsSet, getKeyDrawParams(), mOriginCoords, mDrawingPreviewPlacerView, isHardwareAccelerated, backgroundColor)
@@ -136,7 +137,7 @@ class MainKeyboardView @JvmOverloads constructor(
 
     private fun dismissKeyPreviewWithoutDelay(key: Key) { mKeyPreviewChoreographer.dismissKeyPreview(key, false); invalidateKey(key) }
 
-    override fun onKeyReleased(key: Key, withAnimation: Boolean) {
+    fun onKeyReleased(key: Key, withAnimation: Boolean) {
         key.onReleased(); invalidateKey(key)
         if (!key.noKeyPreview) { if (withAnimation) dismissKeyPreview(key) else dismissKeyPreviewWithoutDelay(key) }
     }
@@ -149,7 +150,7 @@ class MainKeyboardView @JvmOverloads constructor(
     override fun onAttachedToWindow() { super.onAttachedToWindow(); installPreviewPlacerView() }
     override fun onDetachedFromWindow() { super.onDetachedFromWindow(); mDrawingPreviewPlacerView.removeAllViews() }
 
-    override fun showMoreKeysKeyboard(key: Key, tracker: PointerTracker): MoreKeysPanel? {
+    fun showMoreKeysKeyboard(key: Key, tracker: PointerTracker): MoreKeysPanel? {
         val moreKeys = key.getMoreKeys() ?: return null
         var moreKeysKeyboard = mMoreKeysKeyboardCache[key]
         if (moreKeysKeyboard == null) {
@@ -200,7 +201,7 @@ class MainKeyboardView @JvmOverloads constructor(
     fun closing() { cancelAllOngoingEvents(); mMoreKeysKeyboardCache.clear(); dismissClipboardHistoryPanel() }
 
     fun toggleClipboardHistoryPanel() {
-        if (mClipboardHistoryView?.isShowing == true) dismissClipboardHistoryPanel() else showClipboardHistoryPanel()
+        if (mClipboardHistoryView?.isShowing() == true) dismissClipboardHistoryPanel() else showClipboardHistoryPanel()
     }
 
     private fun showClipboardHistoryPanel() {
@@ -242,7 +243,7 @@ class MainKeyboardView @JvmOverloads constructor(
     private fun drawLanguageOnSpacebar(key: Key, canvas: Canvas, paint: Paint) {
         val keyboard = getKeyboard() ?: return; val width = key.width; val height = key.height
         paint.textAlign = Paint.Align.CENTER; paint.typeface = Typeface.DEFAULT; paint.textSize = mLanguageOnSpacebarTextSize
-        val language = layoutLanguageOnSpacebar(paint, keyboard.mId.mSubtype, width)
+        val language = layoutLanguageOnSpacebar(paint, keyboard.mId!!.mSubtype, width)
         val descent = paint.descent(); val textHeight = -paint.ascent() + descent; val baseline = height / 2 + textHeight / 2
         paint.color = mLanguageOnSpacebarTextColor; paint.alpha = mLanguageOnSpacebarFinalAlpha
         canvas.drawText(language, (width / 2).toFloat(), baseline - descent, paint)

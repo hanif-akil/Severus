@@ -133,10 +133,10 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
             return list!!.toTypedArray()
         }
 
-        private val EMPTY_STRING_ARRAY = arrayOfNulls<String>(0)
+        private val EMPTY_STRING_ARRAY = emptyArray<String>()
 
-        private fun filterOutEmptyString(array: Array<String>?): Array<String?> {
-            if (array == null) return EMPTY_STRING_ARRAY as Array<String>
+        private fun filterOutEmptyString(array: Array<String>?): Array<String> {
+            if (array == null) return EMPTY_STRING_ARRAY
             var out: ArrayList<String>? = null
             for (i in array.indices) {
                 val entry = array[i]
@@ -182,15 +182,15 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
             else null
         }
 
-        fun getIntValue(moreKeys: Array<String?>?, key: String, defaultValue: Int): Int {
+        fun getIntValue(moreKeys: Array<String>?, key: String, defaultValue: Int): Int {
             if (moreKeys == null) return defaultValue
             val keyLen = key.length
             var foundValue = false
             var value = defaultValue
             for (i in moreKeys.indices) {
-                val moreKeySpec = moreKeys[i] ?: continue
-                if (!moreKeySpec.startsWith(key)) continue
-                moreKeys[i] = null
+                val moreKeySpec = moreKeys[i]
+                if (moreKeySpec.isEmpty() || !moreKeySpec.startsWith(key)) continue
+                moreKeys[i] = ""
                 try {
                     if (!foundValue) {
                         value = moreKeySpec.substring(keyLen).toInt()
@@ -203,13 +203,13 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
             return value
         }
 
-        fun getBooleanValue(moreKeys: Array<String?>?, key: String): Boolean {
+        fun getBooleanValue(moreKeys: Array<String>?, key: String): Boolean {
             if (moreKeys == null) return false
             var value = false
             for (i in moreKeys.indices) {
-                val moreKeySpec = moreKeys[i] ?: continue
-                if (moreKeySpec != key) continue
-                moreKeys[i] = null
+                val moreKeySpec = moreKeys[i]
+                if (moreKeySpec.isEmpty() || moreKeySpec != key) continue
+                moreKeys[i] = ""
                 value = true
             }
             return value

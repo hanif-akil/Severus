@@ -201,7 +201,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
                 keyPaddedWidth = if (keyboardHorizontalPadding > baseKeyPaddedWidth - FLOAT_THRESHOLD) {
                     baseKeyPaddedWidth
                 } else {
-                    mParams.mOffsetX = (mParams.mRightPadding - mParams.mLeftPadding) / 2
+                    mParams.mOffsetX = (mParams.mRightPadding - mParams.mLeftPadding) / 2f
                     baseKeyPaddedWidth - keyboardHorizontalPadding
                 }
                 val baseKeyPaddedHeight = keyPreviewVisibleHeight + mParams.mVerticalGap
@@ -225,7 +225,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
             )
         }
 
-        fun build(): MoreKeysKeyboard {
+        override fun build(): MoreKeysKeyboard {
             val params = mParams
             val moreKeyFlags = mParentKey.getMoreKeyLabelFlags()
             val moreKeys = mParentKey.getMoreKeys()!!

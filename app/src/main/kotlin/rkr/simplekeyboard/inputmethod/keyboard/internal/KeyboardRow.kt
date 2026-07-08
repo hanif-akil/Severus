@@ -3,6 +3,7 @@ package rkr.simplekeyboard.inputmethod.keyboard.internal
 import android.content.res.Resources
 import android.content.res.TypedArray
 import android.util.Xml
+import rkr.simplekeyboard.inputmethod.keyboard.Key
 import org.xmlpull.v1.XmlPullParser
 import rkr.simplekeyboard.inputmethod.R
 
@@ -46,6 +47,15 @@ class KeyboardRow(private val mResources: Resources, private val mParams: Keyboa
     }
 
     val rowHeight: Float get() = mRowHeight
+
+    fun setCurrentKey(keyAttr: TypedArray, isSpacer: Boolean) {
+        if (!isSpacer) {
+            val keyWidth = keyAttr.getDimension(R.styleable.Keyboard_Key_keyWidth, mRowKeyWidth)
+            if (keyWidth > 0f) {
+                mRowKeyWidth = keyWidth
+            }
+        }
+    }
 
     fun updateXPos(keyAttr: TypedArray) {
         val keyWidth = keyAttr.getDimension(R.styleable.Keyboard_Key_keyWidth, mRowKeyWidth)

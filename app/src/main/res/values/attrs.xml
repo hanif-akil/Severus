@@ -252,6 +252,16 @@
         <attr name="keyTopPadding" format="dimension" />
         <!-- Bottom padding of the key. -->
         <attr name="keyBottomPadding" format="dimension" />
+        <!-- Background type of the key. -->
+        <attr name="keyBackgroundType" format="enum">
+            <enum name="empty" value="0" />
+            <enum name="normal" value="1" />
+            <enum name="functional" value="2" />
+            <enum name="stickyOff" value="3" />
+            <enum name="stickyOn" value="4" />
+            <enum name="action" value="5" />
+            <enum name="spacebar" value="6" />
+        </attr>
 
         <!-- Key top visual attributes -->
         <attr name="keyTypeface" format="enum">

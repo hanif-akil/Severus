@@ -156,7 +156,7 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
             val ei = currentInputEditorInfo
             val inputType = ei?.inputType ?: 0
             return if (mSettingsValues?.mAutoCap == true && inputType and InputType.TYPE_CLASS_TEXT != 0) {
-                ic.getCapsMode(inputType)
+                (ic as android.view.inputmethod.InputConnection).getCapsMode(inputType)
             } else {
                 Constants.TextUtils.CAP_MODE_OFF
             }

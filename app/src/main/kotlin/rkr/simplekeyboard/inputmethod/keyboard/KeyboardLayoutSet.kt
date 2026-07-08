@@ -29,7 +29,7 @@ class KeyboardLayoutSet private constructor(private val mContext: Context, priva
         var mAllowRedundantMoreKeys = false
     }
 
-    class Params {
+    internal class Params {
         var mKeyboardLayoutSetName: String? = null
         var mMode = 0
         var mEditorInfo: EditorInfo? = null

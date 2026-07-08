@@ -16,6 +16,9 @@ class ThemeSettingsFragment : SubScreenFragment(), OnRadioButtonClickedListener 
         init {
             title = name
         }
+        fun setSelected(selected: Boolean) {
+            isChecked = selected
+        }
     }
 
     override fun onCreate(icicle: Bundle?) {
@@ -29,7 +32,11 @@ class ThemeSettingsFragment : SubScreenFragment(), OnRadioButtonClickedListener 
         for (index in keyboardThemeIds.indices) {
             val pref = KeyboardThemePreference(context, keyboardThemeNames[index], keyboardThemeIds[index])
             screen.addPreference(pref)
-            pref.setOnRadioButtonClickedListener(this)
+            pref.setOnPreferenceClickListener {
+                mSelectedThemeId = pref.mThemeId
+                updateSelected()
+                true
+            }
         }
         val keyboardTheme = KeyboardTheme.getKeyboardTheme(context)
         mSelectedThemeId = keyboardTheme.mThemeId

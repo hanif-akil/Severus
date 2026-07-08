@@ -67,14 +67,14 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         val keyboardBottomOffset = ResourceUtils.getKeyboardBottomOffset(res, settingsValues)
         builder.setKeyboardTheme(mKeyboardTheme!!.mThemeId)
         builder.setKeyboardGeometry(keyboardWidth, keyboardHeight, keyboardBottomOffset)
-        builder.setSubtype(mRichImm!!.currentSubtype)
+        builder.setSubtype(mRichImm!!.getCurrentSubtype())
         builder.setLanguageSwitchKeyEnabled(mLatinIME!!.shouldShowLanguageSwitchKey())
         builder.setShowSpecialChars(settingsValues.mShowSpecialChars)
         builder.setShowNumberRow(settingsValues.mShowNumberRow)
         mKeyboardLayoutSet = builder.build()
         try {
             mState.onLoadKeyboard(currentAutoCapsState, currentRecapitalizeState)
-            mKeyboardTextsSet.setLocale(mRichImm!!.currentSubtype.localeObject, mThemeContext!!)
+            mKeyboardTextsSet.setLocale(mRichImm!!.getCurrentSubtype().localeObject, mThemeContext!!)
         } catch (e: KeyboardLayoutSet.KeyboardLayoutSetException) {
             Log.w(TAG, "loading keyboard failed: ${e.mKeyboardId}", e.cause)
         }
@@ -84,6 +84,10 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         mKeyboardView?.onHideWindow()
     }
 
+    private fun setMainKeyboardFrame(settingsValues: SettingsValues?, toggleState: KeyboardSwitchState) {
+        // Stub - sets up the main keyboard frame
+    }
+
     private fun setKeyboard(keyboardId: Int, toggleState: KeyboardSwitchState) {
         val currentSettingsValues = Settings.getInstance().current
         setMainKeyboardFrame(currentSettingsValues, toggleState)
@@ -91,9 +95,9 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         val oldKeyboard = keyboardView.keyboard
         val newKeyboard = mKeyboardLayoutSet!!.getKeyboard(keyboardId)
         keyboardView.keyboard = newKeyboard
-        keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues.mKeyPreviewPopupOn, currentSettingsValues.mKeyPreviewPopupDismissDelay)
-        val subtypeChanged = oldKeyboard == null || newKeyboard.mId.mSubtype != oldKeyboard.mId.mSubtype
-        val languageOnSpacebarFormatType = LanguageOnSpacebarUtils.getLanguageOnSpacebarFormatType(newKeyboard.mId.mSubtype)
+        keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues!!.mKeyPreviewPopupOn, currentSettingsValues.mKeyPreviewPopupDismissDelay)
+        val subtypeChanged = oldKeyboard == null || newKeyboard.mId!!.mSubtype != oldKeyboard.mId!!.mSubtype
+        val languageOnSpacebarFormatType = LanguageOnSpacebarUtils.getLanguageOnSpacebarFormatType(newKeyboard.mId!!.mSubtype)
         keyboardView.startDisplayLanguageOnSpacebar(subtypeChanged, languageOnSpacebarFormatType)
     }
 

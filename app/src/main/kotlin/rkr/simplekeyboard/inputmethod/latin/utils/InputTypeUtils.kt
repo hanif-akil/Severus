@@ -3,15 +3,15 @@ package rkr.simplekeyboard.inputmethod.latin.utils
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 
-object InputTypeUtils : InputType {
+object InputTypeUtils {
     private val WEB_TEXT_PASSWORD_INPUT_TYPE =
-        TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_WEB_PASSWORD
+        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
     private val NUMBER_PASSWORD_INPUT_TYPE =
-        TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD
+        InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
     private val TEXT_PASSWORD_INPUT_TYPE =
-        TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
+        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     private val TEXT_VISIBLE_PASSWORD_INPUT_TYPE =
-        TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
     private val SUPPRESSING_AUTO_SPACES_FIELD_VARIATION = intArrayOf(
         InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
         InputType.TYPE_TEXT_VARIATION_PASSWORD,
@@ -33,27 +33,27 @@ object InputTypeUtils : InputType {
     }
 
     private fun isWebEmailAddressVariation(variation: Int): Boolean {
-        return variation == TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+        return variation == InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
     }
 
     fun isEmailVariation(variation: Int): Boolean {
-        return variation == TYPE_TEXT_VARIATION_EMAIL_ADDRESS || isWebEmailAddressVariation(variation)
+        return variation == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS || isWebEmailAddressVariation(variation)
     }
 
     fun isPasswordInputType(inputType: Int): Boolean {
-        val maskedInputType = inputType and (TYPE_MASK_CLASS or TYPE_MASK_VARIATION)
+        val maskedInputType = inputType and (InputType.TYPE_MASK_CLASS or InputType.TYPE_MASK_VARIATION)
         return isTextPasswordInputType(maskedInputType) || isWebPasswordInputType(maskedInputType) ||
                 isNumberPasswordInputType(maskedInputType)
     }
 
     fun isVisiblePasswordInputType(inputType: Int): Boolean {
-        val maskedInputType = inputType and (TYPE_MASK_CLASS or TYPE_MASK_VARIATION)
+        val maskedInputType = inputType and (InputType.TYPE_MASK_CLASS or InputType.TYPE_MASK_VARIATION)
         return maskedInputType == TEXT_VISIBLE_PASSWORD_INPUT_TYPE
     }
 
     fun isAutoSpaceFriendlyType(inputType: Int): Boolean {
-        if (TYPE_CLASS_TEXT != (TYPE_MASK_CLASS and inputType)) return false
-        val variation = TYPE_MASK_VARIATION and inputType
+        if (InputType.TYPE_CLASS_TEXT != (InputType.TYPE_MASK_CLASS and inputType)) return false
+        val variation = InputType.TYPE_MASK_VARIATION and inputType
         for (fieldVariation in SUPPRESSING_AUTO_SPACES_FIELD_VARIATION) {
             if (variation == fieldVariation) return false
         }
@@ -63,8 +63,6 @@ object InputTypeUtils : InputType {
     fun getImeOptionsActionIdFromEditorInfo(editorInfo: EditorInfo): Int {
         return if (editorInfo.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION != 0) {
             EditorInfo.IME_ACTION_NONE
-        } else if (editorInfo.actionLabel != null) {
-            IME_ACTION_CUSTOM_LABEL
         } else {
             editorInfo.imeOptions and EditorInfo.IME_MASK_ACTION
         }

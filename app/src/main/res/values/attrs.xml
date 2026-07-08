@@ -242,6 +242,16 @@
              proportion of keyboard width.
              If the value is negative, the origin is the right edge of the keyboard. -->
         <attr name="keyXPos" format="fraction" />
+        <!-- Height of the key. -->
+        <attr name="keyHeight" format="dimension" />
+        <!-- Left padding of the key. -->
+        <attr name="keyLeftPadding" format="dimension" />
+        <!-- Right padding of the key. -->
+        <attr name="keyRightPadding" format="dimension" />
+        <!-- Top padding of the key. -->
+        <attr name="keyTopPadding" format="dimension" />
+        <!-- Bottom padding of the key. -->
+        <attr name="keyBottomPadding" format="dimension" />
 
         <!-- Key top visual attributes -->
         <attr name="keyTypeface" format="enum">

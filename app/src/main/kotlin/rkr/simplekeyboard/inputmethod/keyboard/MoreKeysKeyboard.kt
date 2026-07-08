@@ -45,7 +45,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
             }
             mIsMoreKeysFixedOrder = isMoreKeysFixedOrder
             mDefaultKeyPaddedWidth = keyPaddedWidth
-            mDefaultRowHeight = rowHeight
+            mDefaultRowHeight = rowHeight.toInt()
 
             val maxColumns = getMaxKeys(availableWidth, keyPaddedWidth)
             if (isMoreKeysFixedColumn) {
@@ -94,7 +94,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
 
             mTopRowAdjustment = getTopRowAdjustment()
             mColumnWidth = mDefaultKeyPaddedWidth
-            mBaseWidth = mNumColumns * mColumnWidth
+            mBaseWidth = (mNumColumns * mColumnWidth).toInt()
             mOccupiedWidth = round(mBaseWidth + mLeftPadding + mRightPadding - mHorizontalGap).toInt()
             mBaseHeight = mNumRows * mDefaultRowHeight
             mOccupiedHeight = round(mBaseHeight + mTopPadding + mBottomPadding - mVerticalGap).toInt()
@@ -155,7 +155,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
             return if (isTopRow(row)) x + mTopRowAdjustment * (mColumnWidth / 2) else x
         }
 
-        fun getY(row: Int): Float = (mNumRows - 1 - row) * mDefaultRowHeight + mTopPadding
+        fun getY(row: Int): Float = ((mNumRows - 1 - row) * mDefaultRowHeight + mTopPadding).toFloat()
 
         companion object {
             private const val TAG = "MoreKeysKeyboard"
@@ -221,11 +221,11 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
             mParams.setParameters(
                 moreKeys.size, mParentKey.getMoreKeysColumnNumber(), keyPaddedWidth,
                 rowHeight, mParentKey.getX() + mParentKey.getWidth() / 2f, keyboard.mId.mWidth,
-                mParentKey.isMoreKeysFixedColumn, mParentKey.isMoreKeysFixedOrder
+                mParentKey.isMoreKeysFixedColumn(), mParentKey.isMoreKeysFixedOrder()
             )
         }
 
-        override fun build(): MoreKeysKeyboard {
+        fun build(): MoreKeysKeyboard {
             val params = mParams
             val moreKeyFlags = mParentKey.getMoreKeyLabelFlags()
             val moreKeys = mParentKey.getMoreKeys()!!
@@ -239,10 +239,10 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
                 val keyRightEdge = keyLeftEdge + width
                 val keyBottomEdge = keyTopEdge + height
 
-                val keyLeftPadding = if (keyLeftEdge < params.mLeftPadding + FLOAT_THRESHOLD) params.mLeftPadding else params.mHorizontalGap / 2
-                val keyRightPadding = if (keyRightEdge > params.mOccupiedWidth - params.mRightPadding - FLOAT_THRESHOLD) params.mRightPadding else params.mHorizontalGap / 2
-                val keyTopPadding = if (keyTopEdge < params.mTopPadding + FLOAT_THRESHOLD) params.mTopPadding else params.mVerticalGap / 2
-                val keyBottomPadding = if (keyBottomEdge > params.mOccupiedHeight - params.mBottomPadding - FLOAT_THRESHOLD) params.mBottomPadding else params.mVerticalGap / 2
+                val keyLeftPadding = if (keyLeftEdge < params.mLeftPadding.toFloat() + FLOAT_THRESHOLD) params.mLeftPadding.toFloat() else params.mHorizontalGap / 2
+                val keyRightPadding = if (keyRightEdge > params.mOccupiedWidth - params.mRightPadding.toFloat() - FLOAT_THRESHOLD) params.mRightPadding.toFloat() else params.mHorizontalGap / 2
+                val keyTopPadding = if (keyTopEdge < params.mTopPadding.toFloat() + FLOAT_THRESHOLD) params.mTopPadding.toFloat() else params.mVerticalGap / 2
+                val keyBottomPadding = if (keyBottomEdge > params.mOccupiedHeight - params.mBottomPadding.toFloat() - FLOAT_THRESHOLD) params.mBottomPadding.toFloat() else params.mVerticalGap / 2
 
                 val key = moreKeySpec.buildKey(
                     keyLeftEdge, keyTopEdge, width, height,
@@ -255,6 +255,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
 
         companion object {
             private const val LABEL_PADDING_RATIO = 0.2f
+            private const val FLOAT_THRESHOLD = 0.0001f
 
             private fun getMaxKeyWidth(parentKey: Key, minKeyWidth: Float, padding: Float, paint: Paint): Float {
                 var maxWidth = minKeyWidth

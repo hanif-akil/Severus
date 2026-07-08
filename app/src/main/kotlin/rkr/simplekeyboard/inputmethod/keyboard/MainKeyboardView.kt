@@ -124,7 +124,7 @@ class MainKeyboardView @JvmOverloads constructor(
         windowContentView.addView(mDrawingPreviewPlacerView)
     }
 
-    fun onKeyPressed(key: Key, withPreview: Boolean) { key.onPressed(); invalidateKey(key); if (withPreview && !key.noKeyPreview) showKeyPreview(key) }
+    override fun onKeyPressed(key: Key, withPreview: Boolean) { key.onPressed(); invalidateKey(key); if (withPreview && !key.noKeyPreview) showKeyPreview(key) }
 
     private fun showKeyPreview(key: Key) {
         val keyboard = getKeyboard() ?: return
@@ -137,7 +137,7 @@ class MainKeyboardView @JvmOverloads constructor(
 
     private fun dismissKeyPreviewWithoutDelay(key: Key) { mKeyPreviewChoreographer.dismissKeyPreview(key, false); invalidateKey(key) }
 
-    fun onKeyReleased(key: Key, withAnimation: Boolean) {
+    override fun onKeyReleased(key: Key, withAnimation: Boolean) {
         key.onReleased(); invalidateKey(key)
         if (!key.noKeyPreview) { if (withAnimation) dismissKeyPreview(key) else dismissKeyPreviewWithoutDelay(key) }
     }
@@ -150,7 +150,7 @@ class MainKeyboardView @JvmOverloads constructor(
     override fun onAttachedToWindow() { super.onAttachedToWindow(); installPreviewPlacerView() }
     override fun onDetachedFromWindow() { super.onDetachedFromWindow(); mDrawingPreviewPlacerView.removeAllViews() }
 
-    fun showMoreKeysKeyboard(key: Key, tracker: PointerTracker): MoreKeysPanel? {
+    override fun showMoreKeysKeyboard(key: Key, tracker: PointerTracker): MoreKeysPanel? {
         val moreKeys = key.getMoreKeys() ?: return null
         var moreKeysKeyboard = mMoreKeysKeyboardCache[key]
         if (moreKeysKeyboard == null) {

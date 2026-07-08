@@ -7,7 +7,7 @@ import rkr.simplekeyboard.inputmethod.keyboard.internal.KeyboardParams
 import rkr.simplekeyboard.inputmethod.latin.common.Constants
 import java.util.Collections
 
-class Keyboard(params: KeyboardParams) {
+open class Keyboard(params: KeyboardParams) {
     val mId: KeyboardId? = params.mId
     val mOccupiedHeight: Int = params.mOccupiedHeight
     val mOccupiedWidth: Int = params.mOccupiedWidth

@@ -6,6 +6,8 @@ import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.Message
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -30,6 +32,7 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
     private var mRichImm: RichInputMethodManager? = null
     private var mInputLogic: InputLogic? = null
     private var mSettingsValues: SettingsValues? = null
+    val settingsValues: SettingsValues? get() = mSettingsValues
     private var mIsFullscreenMode = false
     private var mIsPressureInBarrelSensor = false
     private val mRecapitalizeStatus = RecapitalizeStatus()

@@ -34,6 +34,7 @@ class KeyboardIconsSet {
         const val PREFIX_ICON = "!icon/"
         const val ICON_UNDEFINED = 0
         private const val ATTR_UNDEFINED = 0
+        private const val NUM_ICONS = 21
         private const val NAME_UNDEFINED = "undefined"
         const val NAME_SHIFT_KEY = "shift_key"
         const val NAME_SHIFT_KEY_SHIFTED = "shift_key_shifted"
@@ -83,7 +84,6 @@ class KeyboardIconsSet {
         )
 
         init {
-            NUM_ICONS = NAMES_AND_ATTR_IDS.size / 2
             ICON_NAMES = arrayOfNulls<String>(NUM_ICONS) as Array<String>
             var iconId = ICON_UNDEFINED
             var i = 0

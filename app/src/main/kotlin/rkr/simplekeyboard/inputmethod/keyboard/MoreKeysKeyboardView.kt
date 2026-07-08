@@ -61,7 +61,7 @@ open class MoreKeysKeyboardView @JvmOverloads constructor(
         controller.onShowMoreKeysPanel(this)
     }
 
-    protected open fun getDefaultCoordX(): Int = (keyboard as MoreKeysKeyboard).getDefaultCoordX()
+    protected open fun getDefaultCoordX(): Int = (keyboard as? MoreKeysKeyboard)?.getDefaultCoordX() ?: 0
 
     override fun onDownEvent(x: Int, y: Int, pointerId: Int) {
         mActivePointerId = pointerId

@@ -421,6 +421,10 @@ open class Key : Comparable<Key> {
 
     fun getPreviewIcon(iconSet: KeyboardIconsSet): Drawable? = iconSet.getIconDrawable(getIconId())
 
+    val width: Int get() = mWidth
+
+    val height: Int get() = mHeight
+
     fun getWidth(): Int = mWidth
 
     fun getHeight(): Int = mHeight
@@ -428,6 +432,18 @@ open class Key : Comparable<Key> {
     fun getDefinedWidth(): Float = mDefinedWidth
 
     fun getDefinedHeight(): Float = mDefinedHeight
+
+    val x: Int get() = mX
+
+    val y: Int get() = mY
+
+    val topPadding: Int get() = mY - mHitbox.top
+
+    val bottomPadding: Int get() = mHitbox.bottom - mY - mHeight
+
+    val leftPadding: Int get() = mX - mHitbox.left
+
+    val rightPadding: Int get() = mHitbox.right - mX - mWidth
 
     fun getX(): Int = mX
 

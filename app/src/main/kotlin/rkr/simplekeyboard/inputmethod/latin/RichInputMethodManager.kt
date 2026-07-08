@@ -76,7 +76,7 @@ class RichInputMethodManager private constructor() {
                 TreeSet { a, b ->
                     if (a == b) 0
                     else {
-                        val result = a.name.compareToIgnoreCase(b.name)
+                        val result = a.name.compareTo(b.name, ignoreCase = true)
                         if (result != 0) result else if (a.hashCode() > b.hashCode()) 1 else -1
                     }
                 }

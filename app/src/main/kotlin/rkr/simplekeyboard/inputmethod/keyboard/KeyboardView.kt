@@ -71,7 +71,7 @@ open class KeyboardView @JvmOverloads constructor(
     }
 
     fun getKeyboard(): Keyboard? = mKeyboard
-    protected fun getVerticalCorrection(): Float = mVerticalCorrection
+    protected val verticalCorrection: Float get() = mVerticalCorrection
     protected fun getKeyDrawParams(): KeyDrawParams = mKeyDrawParams
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

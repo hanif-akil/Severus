@@ -100,6 +100,10 @@ class MainKeyboardView @JvmOverloads constructor(
 
     fun setKeyboardActionListener(listener: KeyboardActionListener) { mKeyboardActionListener = listener; PointerTracker.setKeyboardActionListener(listener) }
 
+    override fun getKeyPreviewDrawParams(): KeyPreviewDrawParams = mKeyPreviewDrawParams
+    override fun getKeyPreviewChoreographer(): KeyPreviewChoreographer = mKeyPreviewChoreographer
+    override fun getKeyDrawParams(): KeyDrawParams = super.getKeyDrawParams()
+
     override fun setKeyboard(keyboard: Keyboard) {
         mTimerHandler.cancelLongPressTimers()
         super.setKeyboard(keyboard)

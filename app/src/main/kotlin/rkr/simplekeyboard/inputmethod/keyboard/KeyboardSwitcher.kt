@@ -136,7 +136,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
 
     fun isShowingKeyboardId(vararg keyboardIds: Int): Boolean {
         if (mKeyboardView == null || !mKeyboardView!!.isShown) return false
-        val activeKeyboardId = mKeyboardView!!.keyboard.mId.mElementId
+        val activeKeyboardId = mKeyboardView!!.keyboard?.mId?.mElementId ?: return false
         return keyboardIds.any { it == activeKeyboardId }
     }
 

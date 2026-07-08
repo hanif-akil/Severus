@@ -1,11 +1,14 @@
 package rkr.simplekeyboard.inputmethod.keyboard.internal
 
+import android.content.res.Resources
 import android.content.res.TypedArray
+import android.util.Xml
+import org.xmlpull.v1.XmlPullParser
 import rkr.simplekeyboard.inputmethod.R
 
-class KeyboardRow(private val mParams: KeyboardParams, keyAttr: TypedArray) {
+class KeyboardRow(private val mResources: Resources, private val mParams: KeyboardParams, parser: XmlPullParser, currentY: Float) {
     private var mRowX = 0f
-    private var mRowY = 0f
+    private var mRowY = currentY
     private var mRowWidth = 0
     private var mRowKeyWidth = 0f
     private var mRowKeyHeight = 0f
@@ -18,25 +21,51 @@ class KeyboardRow(private val mParams: KeyboardParams, keyAttr: TypedArray) {
     private var mRowKeys = 0
     private var mRowFixedWidth = 0f
     private var mRowHasActionKey = false
+    private var mRowHeight = 0f
+
+    private val mDefaultKeyAttr: TypedArray
+    private val mRowKeyAttrStack = ArrayList<TypedArray>()
 
     init {
+        val attr = Xml.asAttributeSet(parser)
+        val rowKeyAttr = mResources.obtainAttributes(attr, R.styleable.Keyboard_Key)
+        mDefaultKeyAttr = rowKeyAttr
+
         mRowX = mParams.mLeftPadding.toFloat()
         mRowY += mParams.mVerticalGap.toFloat()
-        mRowWidth = mParams.mKeyboardWidth - mParams.mLeftPadding - mParams.mRightPadding
-        mRowKeyWidth = mParams.mDefaultKeyWidth
-        mRowKeyHeight = keyAttr.getDimension(R.styleable.Keyboard_Key_keyHeight, mParams.mDefaultKeyHeight)
-        mRowLeftPadding = keyAttr.getDimension(R.styleable.Keyboard_Key_keyLeftPadding, mParams.mLeftPadding.toFloat())
-        mRowRightPadding = keyAttr.getDimension(R.styleable.Keyboard_Key_keyRightPadding, mParams.mRightPadding.toFloat())
-        mRowTopPadding = keyAttr.getDimension(R.styleable.Keyboard_Key_keyTopPadding, mParams.mTopPadding.toFloat())
-        mRowBottomPadding = keyAttr.getDimension(R.styleable.Keyboard_Key_keyBottomPadding, mParams.mBottomPadding.toFloat())
-        mRowDefaultBackgroundType = keyAttr.getInt(R.styleable.Keyboard_Key_keyBackgroundType, Key.BACKGROUND_TYPE_NORMAL)
-        mRowDefaultKeyLabelFlags = keyAttr.getInt(R.styleable.Keyboard_Key_keyLabelFlags, 0)
+        mRowWidth = mParams.mOccupiedWidth - mParams.mLeftPadding - mParams.mRightPadding
+        mRowKeyWidth = mParams.mDefaultKeyPaddedWidth
+        mRowKeyHeight = rowKeyAttr.getDimension(R.styleable.Keyboard_Key_keyHeight, mParams.mDefaultRowHeight.toFloat())
+        mRowLeftPadding = rowKeyAttr.getDimension(R.styleable.Keyboard_Key_keyLeftPadding, mParams.mLeftPadding.toFloat())
+        mRowRightPadding = rowKeyAttr.getDimension(R.styleable.Keyboard_Key_keyRightPadding, mParams.mRightPadding.toFloat())
+        mRowTopPadding = rowKeyAttr.getDimension(R.styleable.Keyboard_Key_keyTopPadding, mParams.mTopPadding.toFloat())
+        mRowBottomPadding = rowKeyAttr.getDimension(R.styleable.Keyboard_Key_keyBottomPadding, mParams.mBottomPadding.toFloat())
+        mRowDefaultBackgroundType = rowKeyAttr.getInt(R.styleable.Keyboard_Key_keyBackgroundType, Key.BACKGROUND_TYPE_NORMAL)
+        mRowDefaultKeyLabelFlags = rowKeyAttr.getInt(R.styleable.Keyboard_Key_keyLabelFlags, 0)
+        mRowHeight = mRowKeyHeight - mRowTopPadding - mRowBottomPadding + mParams.mVerticalGap
     }
 
-    fun setCurrentKey(keyAttr: TypedArray, isSpacer: Boolean) {
+    val rowHeight: Float get() = mRowHeight
+
+    fun updateXPos(keyAttr: TypedArray) {
         val keyWidth = keyAttr.getDimension(R.styleable.Keyboard_Key_keyWidth, mRowKeyWidth)
         if (keyWidth > 0f) {
             mRowKeyWidth = keyWidth
+        }
+    }
+
+    fun pushRowAttributes(keyAttr: TypedArray) {
+        mRowKeyAttrStack.add(mDefaultKeyAttr)
+    }
+
+    fun popRowAttributes() {
+        if (mRowKeyAttrStack.isNotEmpty()) {
+            val restored = mRowKeyAttrStack.removeAt(mRowKeyAttrStack.size - 1)
+            mRowKeyWidth = restored.getDimension(R.styleable.Keyboard_Key_keyWidth, mParams.mDefaultKeyPaddedWidth)
+            mRowLeftPadding = restored.getDimension(R.styleable.Keyboard_Key_keyLeftPadding, mParams.mLeftPadding.toFloat())
+            mRowRightPadding = restored.getDimension(R.styleable.Keyboard_Key_keyRightPadding, mParams.mRightPadding.toFloat())
+            mRowTopPadding = restored.getDimension(R.styleable.Keyboard_Key_keyTopPadding, mParams.mTopPadding.toFloat())
+            mRowBottomPadding = restored.getDimension(R.styleable.Keyboard_Key_keyBottomPadding, mParams.mBottomPadding.toFloat())
         }
     }
 

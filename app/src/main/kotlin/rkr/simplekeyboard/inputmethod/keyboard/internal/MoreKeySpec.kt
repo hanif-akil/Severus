@@ -3,7 +3,6 @@ package rkr.simplekeyboard.inputmethod.keyboard.internal
 import android.text.TextUtils
 import android.util.SparseIntArray
 import rkr.simplekeyboard.inputmethod.keyboard.Key
-import rkr.simplekeyboard.inputmethod.keyboard.KeyboardIconsSet
 import rkr.simplekeyboard.inputmethod.latin.common.CollectionUtils
 import rkr.simplekeyboard.inputmethod.latin.common.Constants
 import rkr.simplekeyboard.inputmethod.latin.common.StringUtils
@@ -136,7 +135,7 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
 
         private val EMPTY_STRING_ARRAY = arrayOfNulls<String>(0)
 
-        private fun filterOutEmptyString(array: Array<String>?): Array<String> {
+        private fun filterOutEmptyString(array: Array<String>?): Array<String?> {
             if (array == null) return EMPTY_STRING_ARRAY as Array<String>
             var out: ArrayList<String>? = null
             for (i in array.indices) {
@@ -183,7 +182,7 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
             else null
         }
 
-        fun getIntValue(moreKeys: Array<String>?, key: String, defaultValue: Int): Int {
+        fun getIntValue(moreKeys: Array<String?>?, key: String, defaultValue: Int): Int {
             if (moreKeys == null) return defaultValue
             val keyLen = key.length
             var foundValue = false
@@ -204,7 +203,7 @@ class MoreKeySpec(moreKeySpec: String, needsToUpperCase: Boolean, locale: Locale
             return value
         }
 
-        fun getBooleanValue(moreKeys: Array<String>?, key: String): Boolean {
+        fun getBooleanValue(moreKeys: Array<String?>?, key: String): Boolean {
             if (moreKeys == null) return false
             var value = false
             for (i in moreKeys.indices) {

@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.view.View
 import android.view.ViewGroup
 import rkr.simplekeyboard.inputmethod.keyboard.Key
-import rkr.simplekeyboard.inputmethod.keyboard.KeyboardIconsSet
 import rkr.simplekeyboard.inputmethod.latin.common.CoordinateUtils
 import rkr.simplekeyboard.inputmethod.latin.utils.ViewLayoutUtils
 import java.util.ArrayDeque

@@ -69,17 +69,17 @@ open class KeyboardBuilder<KP : KeyboardParams>(val mContext: Context, protected
         try {
             val params = mParams; val id = params.mId!!
             val height = id.mHeight; val width = id.mWidth; val bottomOffset = id.mBottomOffset
-            val bonusHeight = keyboardAttr.getFraction(R.styleable.Keyboard_bonusHeight, height, height, 0).toInt()
+            val bonusHeight = keyboardAttr.getFraction(R.styleable.Keyboard_bonusHeight, height.toFloat(), height.toFloat(), 0f).toInt()
             params.mOccupiedHeight = height + bonusHeight + bottomOffset; params.mOccupiedWidth = width
             params.mTopPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardTopPadding, height, 0f).toInt()
             params.mBottomPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardBottomPadding, height, 0f).toInt()
             params.mLeftPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardLeftPadding, width, 0f).toInt()
             params.mRightPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardRightPadding, width, 0f).toInt()
-            params.mHorizontalGap = keyboardAttr.getFraction(R.styleable.Keyboard_horizontalGap, width, width, 0)
-            val baseWidth = params.mOccupiedWidth - params.mLeftPadding - params.mRightPadding + params.mHorizontalGap; params.mBaseWidth = baseWidth
+            params.mHorizontalGap = keyboardAttr.getFraction(R.styleable.Keyboard_horizontalGap, width.toFloat(), width.toFloat(), 0f)
+            val baseWidth = params.mOccupiedWidth - params.mLeftPadding - params.mRightPadding + params.mHorizontalGap; params.mBaseWidth = baseWidth.toInt()
             params.mDefaultKeyPaddedWidth = ResourceUtils.getFraction(keyAttr, R.styleable.Keyboard_Key_keyWidth, baseWidth.toFloat(), (baseWidth / DEFAULT_KEYBOARD_COLUMNS).toFloat())
-            params.mVerticalGap = keyboardAttr.getFraction(R.styleable.Keyboard_verticalGap, height, height, 0)
-            val baseHeight = params.mOccupiedHeight - params.mTopPadding - params.mBottomPadding + params.mVerticalGap - bottomOffset; params.mBaseHeight = baseHeight
+            params.mVerticalGap = keyboardAttr.getFraction(R.styleable.Keyboard_verticalGap, height.toFloat(), height.toFloat(), 0f)
+            val baseHeight = params.mOccupiedHeight - params.mTopPadding - params.mBottomPadding + params.mVerticalGap - bottomOffset; params.mBaseHeight = baseHeight.toInt()
             params.mDefaultRowHeight = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_rowHeight, baseHeight, (baseHeight / DEFAULT_KEYBOARD_ROWS).toFloat()).toInt()
             params.mKeyVisualAttributes = KeyVisualAttributes.newInstance(keyAttr)
             params.mMoreKeysTemplate = keyboardAttr.getResourceId(R.styleable.Keyboard_moreKeysTemplate, 0)

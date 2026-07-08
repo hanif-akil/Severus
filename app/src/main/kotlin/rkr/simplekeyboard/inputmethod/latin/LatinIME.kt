@@ -156,7 +156,9 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
             val ei = currentInputEditorInfo
             val inputType = ei?.inputType ?: 0
             return if (mSettingsValues?.mAutoCap == true && inputType and InputType.TYPE_CLASS_TEXT != 0) {
-                currentInputConnection!!.getCapsMode(inputType)
+                @Suppress("UNCHECKED_CAST")
+                (ic.javaClass.getMethod("getCapsMode", Int::class.javaPrimitiveType)
+                    .invoke(ic, inputType) as Int)
             } else {
                 Constants.TextUtils.CAP_MODE_OFF
             }

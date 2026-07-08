@@ -62,30 +62,32 @@ To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAre
 /home/runner/work/Severus/Severus/app/src/main/res/values-zu/strings.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
 
 > Task :app:generateDebugGlobalSynthetics
-> Task :app:desugarDebugFileDependencies
 > Task :app:checkDebugDuplicateClasses
+> Task :app:desugarDebugFileDependencies
 > Task :app:mergeDebugJniLibFolders
-> Task :app:mergeLibDexDebug
 > Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:mergeLibDexDebug
 > Task :app:stripDebugDebugSymbols NO-SOURCE
 > Task :app:processDebugResources
 > Task :app:mergeExtDexDebug
 > Task :app:validateSigningDebug
 > Task :app:writeDebugAppMetadata
 > Task :app:writeDebugSigningConfigVersions
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardId.kt:14:5 'public' function exposes its 'internal' parameter type 'Params'.
 
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardLayoutSet.kt:45:22 'internal' property exposes its 'private-in-class' type argument 'ElementParams'.
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/LatinIME.kt:159:66 Unresolved reference 'getCapsMode'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Keyboard.kt:11:9 'public' property exposes its 'internal' type 'KeyboardId'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardLayoutSet.kt:25:56 'public' function exposes its 'internal' parameter type 'KeyboardId'.
 > Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/settings/ThemeSettingsFragment.kt:20:13 Unresolved reference 'isChecked'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/internal/KeyboardBuilder.kt:34:26 'public' function exposes its 'internal' parameter type 'KeyboardId'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/internal/KeyboardParams.kt:7:9 'public' property exposes its 'internal' type 'KeyboardId'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/LatinIME.kt:159:42 Unresolved reference 'getCapsMode'.
 e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/utils/ResourceUtils.kt:87:57 Argument type mismatch: actual type is 'Int', but 'Float' was expected.
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/utils/ResourceUtils.kt:87:70 Too many arguments for 'fun getFraction(p0: Float, p1: Float): Float'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/utils/ResourceUtils.kt:87:64 Argument type mismatch: actual type is 'Int', but 'Float' was expected.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/latin/utils/ResourceUtils.kt:87:78 Too many arguments for 'fun getFraction(p0: Float, p1: Float): Float'.
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1783538368453.json
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1783536475619.json
-FAILURE: Build failed with an exception.
 
 [Incubating] Problems report is available at: file:///home/runner/work/Severus/Severus/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
 
 * What went wrong:
 Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'com.android.internal.application').
@@ -120,6 +122,7 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:com
 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+
 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
@@ -130,50 +133,18 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:com
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$11(DefaultBuildLifecycleController.java:323)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$9(StateTransitionController.java:215)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:215)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:314)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:286)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:130)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:182)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:199)
-
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:199)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+26 actionable tasks: 26 executed
 Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
 	at org.gradle.workers.internal.DefaultWorkerExecutor$WorkItemExecution.waitForCompletion(DefaultWorkerExecutor.java:278)
 	at org.gradle.internal.work.DefaultAsyncWorkTracker.lambda$waitForItemsAndGatherFailures$2(DefaultAsyncWorkTracker.java:132)
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
-
 	at org.gradle.internal.Factories$1.create(Factories.java:30)
-For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
-26 actionable tasks: 26 executed
 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withoutLocksBlocking$3(DefaultWorkerLeaseService.java:410)
 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
 	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocksBlocking(DefaultWorkerLeaseService.java:405)
@@ -283,7 +254,7 @@ For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/comman
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
+	... 30 more
 Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
 	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
@@ -321,5 +292,4 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 41s
-Error: Process completed with exit code 1.
+BUILD FAILED in 37s

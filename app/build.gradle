@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
+    compileSdk 37
+
     defaultConfig {
         applicationId "rkr.simplekeyboard.inputmethod"
-        compileSdk 37
         minSdkVersion 24
         targetSdkVersion 37
         versionCode 146

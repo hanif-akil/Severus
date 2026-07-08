@@ -425,10 +425,6 @@ open class Key : Comparable<Key> {
 
     val height: Int get() = mHeight
 
-    fun getWidth(): Int = mWidth
-
-    fun getHeight(): Int = mHeight
-
     fun getDefinedWidth(): Float = mDefinedWidth
 
     fun getDefinedHeight(): Float = mDefinedHeight
@@ -446,18 +442,6 @@ open class Key : Comparable<Key> {
     val leftPadding: Int get() = mX - mHitbox.left
 
     val rightPadding: Int get() = mHitbox.right - mX - mWidth
-
-    fun getX(): Int = mX
-
-    fun getY(): Int = mY
-
-    fun getTopPadding(): Int = mY - mHitbox.top
-
-    fun getBottomPadding(): Int = mHitbox.bottom - mY - mHeight
-
-    fun getLeftPadding(): Int = mX - mHitbox.left
-
-    fun getRightPadding(): Int = mHitbox.right - mX - mWidth
 
     fun onPressed() { mPressed = true }
 

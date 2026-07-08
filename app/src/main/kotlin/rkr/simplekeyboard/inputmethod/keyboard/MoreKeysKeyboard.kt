@@ -220,7 +220,7 @@ class MoreKeysKeyboard(params: MoreKeysKeyboardParams) : Keyboard(params) {
             val moreKeys = mParentKey.getMoreKeys()!!
             mParams.setParameters(
                 moreKeys.size, mParentKey.getMoreKeysColumnNumber(), keyPaddedWidth,
-                rowHeight, mParentKey.getX() + mParentKey.getWidth() / 2f, keyboard.mId.mWidth,
+                rowHeight, mParentKey.x + mParentKey.width / 2f, keyboard.mId.mWidth,
                 mParentKey.isMoreKeysFixedColumn(), mParentKey.isMoreKeysFixedOrder()
             )
         }

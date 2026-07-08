@@ -123,7 +123,7 @@ open class KeyboardView @JvmOverloads constructor(
         } else {
             for (key in mInvalidatedKeys) {
                 if (!keyboard.hasKey(key)) continue
-                if (background != null) { val x = key.getX() + paddingLeft; val y = key.getY() + paddingTop; mClipRect.set(x, y, x + key.width, y + key.height); canvas.save(); canvas.clipRect(mClipRect); canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR); background.draw(canvas); canvas.restore() }
+                if (background != null) { val x = key.x + paddingLeft; val y = key.y + paddingTop; mClipRect.set(x, y, x + key.width, y + key.height); canvas.save(); canvas.clipRect(mClipRect); canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR); background.draw(canvas); canvas.restore() }
                 onDrawKey(key, canvas, paint)
             }
         }
@@ -131,7 +131,7 @@ open class KeyboardView @JvmOverloads constructor(
     }
 
     private fun onDrawKey(key: Key, canvas: Canvas, paint: Paint) {
-        val keyDrawX = key.getX() + paddingLeft; val keyDrawY = key.getY() + paddingTop
+        val keyDrawX = key.x + paddingLeft; val keyDrawY = key.y + paddingTop
         canvas.translate(keyDrawX.toFloat(), keyDrawY.toFloat())
         val attr = key.visualAttributes
         val params = mKeyDrawParams.mayCloneAndUpdateParams(key.height, attr)
@@ -192,7 +192,7 @@ open class KeyboardView @JvmOverloads constructor(
 
     fun invalidateKey(key: Key?) {
         if (mInvalidateAllKeys || key == null) return; mInvalidatedKeys.add(key)
-        val x = key.getX() + paddingLeft; val y = key.getY() + paddingTop; invalidate(x, y, x + key.width, y + key.height)
+        val x = key.x + paddingLeft; val y = key.y + paddingTop; invalidate(x, y, x + key.width, y + key.height)
     }
 
     override fun onDetachedFromWindow() { super.onDetachedFromWindow(); freeOffscreenBuffer() }

@@ -256,7 +256,7 @@ open class KeyboardBuilder<KP : KeyboardParams>(val mContext: Context, protected
     private fun startRow(row: KeyboardRow) { mCurrentRow = row; mPreviousKeyInRow = null }
     private fun endRow(row: KeyboardRow) { if (mPreviousKeyInRow != null && !mPreviousKeyInRow!!.isSpacer) { setKeyHitboxRightEdge(mPreviousKeyInRow!!, mParams.mOccupiedWidth.toFloat()); mPreviousKeyInRow = null }; mCurrentY += row.rowHeight; mCurrentRow = null }
     private fun endKey(key: Key, row: KeyboardRow) { mParams.onAddKey(key); if (mPreviousKeyInRow != null && !mPreviousKeyInRow!!.isSpacer) { setKeyHitboxRightEdge(mPreviousKeyInRow!!, row.getKeyX() - row.getKeyLeftPadding()) }; mPreviousKeyInRow = key }
-    private fun setKeyHitboxRightEdge(key: Key, xPos: Float) { val keyRight = key.getX() + key.width; val padding = xPos - keyRight; key.setHitboxRightEdge(Math.round(padding) + keyRight) }
+    private fun setKeyHitboxRightEdge(key: Key, xPos: Float) { val keyRight = key.x + key.width; val padding = xPos - keyRight; key.setHitboxRightEdge(Math.round(padding) + keyRight) }
     private fun endKeyboard() { mParams.removeRedundantMoreKeys() }
 
     companion object {

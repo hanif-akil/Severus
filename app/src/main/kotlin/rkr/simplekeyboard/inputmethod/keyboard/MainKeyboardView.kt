@@ -163,7 +163,7 @@ class MainKeyboardView @JvmOverloads constructor(
         mMoreKeysKeyboardContainer.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         val lastCoords = CoordinateUtils.newInstance(); tracker.getLastCoordinates(lastCoords)
         val keyPreviewEnabled = mKeyPreviewDrawParams.isPopupEnabled() && !key.noKeyPreview
-        val pointX = if (mConfigShowMoreKeysKeyboardAtTouchedPoint && !keyPreviewEnabled) CoordinateUtils.x(lastCoords) else key.getX() + key.width / 2
+        val pointX = if (mConfigShowMoreKeysKeyboardAtTouchedPoint && !keyPreviewEnabled) CoordinateUtils.x(lastCoords) else key.x + key.width / 2
         val pointY = key.y + mKeyPreviewDrawParams.getVisibleOffset() + Math.round(moreKeysKeyboard.mBottomPadding)
         moreKeysKeyboardView.showMoreKeysPanel(this, this, pointX, pointY, mKeyboardActionListener)
         return moreKeysKeyboardView

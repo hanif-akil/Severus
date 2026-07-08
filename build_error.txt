@@ -35,59 +35,123 @@ To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAre
 WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
 To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
 
-> Task :app:preBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
-> Task :app:generateDebugResValues
-> Task :app:checkDebugAarMetadata
-> Task :app:mapDebugSourceSetPaths
-> Task :app:processDebugNavigationResources
-> Task :app:compileDebugNavigationResources
-> Task :app:generateDebugResources
-> Task :app:createDebugCompatibleScreenManifests
-> Task :app:extractDeepLinksDebug
-> Task :app:processDebugMainManifest
-> Task :app:processDebugManifest
-> Task :app:processDebugManifestForPackage
-> Task :app:generateDebugAssets UP-TO-DATE
-> Task :app:javaPreCompileDebug
-> Task :app:mergeDebugAssets
-> Task :app:compressDebugAssets
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:430:5 Platform declaration clash: The following declarations have the same JVM signature (getHeight()I):
+    fun `<get-height>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getHeight(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:436:16 Platform declaration clash: The following declarations have the same JVM signature (getX()I):
+    fun `<get-x>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getX(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
 
-> Task :app:mergeDebugResources
-/home/runner/work/Severus/Severus/app/src/main/res/values/strings.xml:84:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
-/home/runner/work/Severus/Severus/app/src/main/res/values-ko/strings.xml:38:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
-/home/runner/work/Severus/Severus/app/src/main/res/values-zh-rCN/strings.xml:39:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
-/home/runner/work/Severus/Severus/app/src/main/res/values-ja/strings.xml:39:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
-/home/runner/work/Severus/Severus/app/src/main/res/values-zu/strings.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/subtype_generic_layout. Did you mean to add the formatted="false" attribute?
-
-> Task :app:generateDebugGlobalSynthetics
-> Task :app:desugarDebugFileDependencies
-> Task :app:checkDebugDuplicateClasses
-> Task :app:mergeDebugJniLibFolders
-> Task :app:mergeDebugNativeLibs NO-SOURCE
-> Task :app:stripDebugDebugSymbols NO-SOURCE
-> Task :app:mergeLibDexDebug
-> Task :app:processDebugResources
-> Task :app:mergeExtDexDebug
-> Task :app:validateSigningDebug
-> Task :app:writeDebugAppMetadata
-> Task :app:writeDebugSigningConfigVersions
-
-e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardId.kt:14:5 'public' function exposes its 'internal' parameter type 'Params'.
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:438:16 Platform declaration clash: The following declarations have the same JVM signature (getY()I):
+    fun `<get-y>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getY(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:440:48 Platform declaration clash: The following declarations have the same JVM signature (getVisualAttributes()Lrkr/simplekeyboard/inputmethod/keyboard/internal/KeyVisualAttributes;):
+    fun `<get-visualAttributes>`(): KeyVisualAttributes? defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getVisualAttributes(): KeyVisualAttributes? defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:442:25 Platform declaration clash: The following declarations have the same JVM signature (getTopPadding()I):
+    fun `<get-topPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getTopPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:444:28 Platform declaration clash: The following declarations have the same JVM signature (getBottomPadding()I):
+    fun `<get-bottomPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getBottomPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:446:26 Platform declaration clash: The following declarations have the same JVM signature (getLeftPadding()I):
+    fun `<get-leftPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getLeftPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:448:27 Platform declaration clash: The following declarations have the same JVM signature (getRightPadding()I):
+    fun `<get-rightPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getRightPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:450:5 Platform declaration clash: The following declarations have the same JVM signature (getX()I):
+    fun `<get-x>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getX(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:452:5 Platform declaration clash: The following declarations have the same JVM signature (getY()I):
+    fun `<get-y>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getY(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:454:5 Platform declaration clash: The following declarations have the same JVM signature (getTopPadding()I):
+    fun `<get-topPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getTopPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:456:5 Platform declaration clash: The following declarations have the same JVM signature (getBottomPadding()I):
+    fun `<get-bottomPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getBottomPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:458:5 Platform declaration clash: The following declarations have the same JVM signature (getLeftPadding()I):
+    fun `<get-leftPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getLeftPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:460:5 Platform declaration clash: The following declarations have the same JVM signature (getRightPadding()I):
+    fun `<get-rightPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+    fun getRightPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getVisualAttributes()Lrkr/simplekeyboard/inputmethod/keyboard/internal/KeyVisualAttributes;):
+    fun `<get-visualAttributes>`(): KeyVisualAttributes? defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getVisualAttributes(): KeyVisualAttributes? defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getWidth()I):
+    fun `<get-width>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getWidth(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getHeight()I):
+    fun `<get-height>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getHeight(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getX()I):
+    fun `<get-x>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getX(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getY()I):
+    fun `<get-y>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getY(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getTopPadding()I):
+    fun `<get-topPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getTopPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getBottomPadding()I):
 > Task :app:compileDebugKotlin FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1783539137526.json
+    fun `<get-bottomPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getBottomPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getLeftPadding()I):
+    fun `<get-leftPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getLeftPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/Key.kt:511:5 Inherited platform declarations clash: The following declarations have the same JVM signature (getRightPadding()I):
+    fun `<get-rightPadding>`(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+    fun getRightPadding(): Int defined in rkr.simplekeyboard.inputmethod.keyboard.Key.Spacer
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardView.kt:61:5 Platform declaration clash: The following declarations have the same JVM signature (setKeyboard(Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;)V):
+    fun `<set-keyboard>`(value: Keyboard?): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+    fun setKeyboard(keyboard: Keyboard): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardView.kt:73:5 Platform declaration clash: The following declarations have the same JVM signature (getKeyboard()Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;):
+    fun `<get-keyboard>`(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+    fun getKeyboard(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardView.kt:76:9 Platform declaration clash: The following declarations have the same JVM signature (getKeyboard()Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;):
+    fun `<get-keyboard>`(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+    fun getKeyboard(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/KeyboardView.kt:77:9 Platform declaration clash: The following declarations have the same JVM signature (setKeyboard(Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;)V):
+    fun `<set-keyboard>`(value: Keyboard?): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+    fun setKeyboard(keyboard: Keyboard): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.KeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/MainKeyboardView.kt:29:1 Inherited platform declarations clash: The following declarations have the same JVM signature (getKeyboard()Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;):
+    fun `<get-keyboard>`(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+    fun getKeyboard(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/MainKeyboardView.kt:106:5 Accidental override: The following declarations have the same JVM signature (invalidateKey(Lrkr/simplekeyboard/inputmethod/keyboard/Key;)V):
+    fun invalidateKey(key: Key): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+    fun invalidateKey(key: Key?): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/MainKeyboardView.kt:108:5 Accidental override: The following declarations have the same JVM signature (setKeyboard(Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;)V):
+    fun `<set-keyboard>`(value: Keyboard?): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+    fun setKeyboard(keyboard: Keyboard): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/MoreKeysKeyboardView.kt:12:1 Inherited platform declarations clash: The following declarations have the same JVM signature (getKeyboard()Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;):
+    fun `<get-keyboard>`(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.MoreKeysKeyboardView
+    fun getKeyboard(): Keyboard? defined in rkr.simplekeyboard.inputmethod.keyboard.MoreKeysKeyboardView
+e: file:///home/runner/work/Severus/Severus/app/src/main/kotlin/rkr/simplekeyboard/inputmethod/keyboard/MoreKeysKeyboardView.kt:40:5 Accidental override: The following declarations have the same JVM signature (setKeyboard(Lrkr/simplekeyboard/inputmethod/keyboard/Keyboard;)V):
+    fun `<set-keyboard>`(value: Keyboard?): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MoreKeysKeyboardView
+    fun setKeyboard(keyboard: Keyboard): Unit defined in rkr.simplekeyboard.inputmethod.keyboard.MoreKeysKeyboardView
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1783539605517.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/Severus/Severus/build/reports/problems/problems-report.html
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'com.android.internal.application').
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-   > Compilation error. See log for more details
 
+Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'com.android.internal.application').
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+
+   > Compilation error. See log for more details
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+
+For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 * Try:
+26 actionable tasks: 26 executed
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 > Get more help at https://help.gradle.org.
@@ -100,14 +164,7 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:com
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
-
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
-
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
-
-For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
-26 actionable tasks: 26 executed
 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
@@ -132,37 +189,6 @@ For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/comman
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$11(DefaultBuildLifecycleController.java:323)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$9(StateTransitionController.java:215)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:215)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:314)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:286)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:130)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:182)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:199)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:199)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
@@ -278,7 +304,7 @@ Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionExcept
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
+	... 30 more
 Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
 	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
@@ -316,4 +342,5 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 30s
+BUILD FAILED in 45s
+Error: Process completed with exit code 1.

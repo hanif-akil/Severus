@@ -1,6 +1,7 @@
 package rkr.simplekeyboard.inputmethod.keyboard.internal
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -70,21 +71,21 @@ open class KeyboardBuilder<KP : KeyboardParams>(val mContext: Context, protected
             val height = id.mHeight; val width = id.mWidth; val bottomOffset = id.mBottomOffset
             val bonusHeight = keyboardAttr.getFraction(R.styleable.Keyboard_bonusHeight, height, height, 0).toInt()
             params.mOccupiedHeight = height + bonusHeight + bottomOffset; params.mOccupiedWidth = width
-            params.mTopPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardTopPadding, height, 0).toInt()
-            params.mBottomPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardBottomPadding, height, 0).toInt()
-            params.mLeftPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardLeftPadding, width, 0).toInt()
-            params.mRightPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardRightPadding, width, 0).toInt()
+            params.mTopPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardTopPadding, height, 0f).toInt()
+            params.mBottomPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardBottomPadding, height, 0f).toInt()
+            params.mLeftPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardLeftPadding, width, 0f).toInt()
+            params.mRightPadding = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_keyboardRightPadding, width, 0f).toInt()
             params.mHorizontalGap = keyboardAttr.getFraction(R.styleable.Keyboard_horizontalGap, width, width, 0)
             val baseWidth = params.mOccupiedWidth - params.mLeftPadding - params.mRightPadding + params.mHorizontalGap; params.mBaseWidth = baseWidth
-            params.mDefaultKeyPaddedWidth = ResourceUtils.getFraction(keyAttr, R.styleable.Keyboard_Key_keyWidth, baseWidth, baseWidth / DEFAULT_KEYBOARD_COLUMNS)
+            params.mDefaultKeyPaddedWidth = ResourceUtils.getFraction(keyAttr, R.styleable.Keyboard_Key_keyWidth, baseWidth.toFloat(), (baseWidth / DEFAULT_KEYBOARD_COLUMNS).toFloat())
             params.mVerticalGap = keyboardAttr.getFraction(R.styleable.Keyboard_verticalGap, height, height, 0)
             val baseHeight = params.mOccupiedHeight - params.mTopPadding - params.mBottomPadding + params.mVerticalGap - bottomOffset; params.mBaseHeight = baseHeight
-            params.mDefaultRowHeight = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_rowHeight, baseHeight, baseHeight / DEFAULT_KEYBOARD_ROWS).toInt()
+            params.mDefaultRowHeight = ResourceUtils.getDimensionOrFraction(keyboardAttr, R.styleable.Keyboard_rowHeight, baseHeight, (baseHeight / DEFAULT_KEYBOARD_ROWS).toFloat()).toInt()
             params.mKeyVisualAttributes = KeyVisualAttributes.newInstance(keyAttr)
             params.mMoreKeysTemplate = keyboardAttr.getResourceId(R.styleable.Keyboard_moreKeysTemplate, 0)
             params.mMaxMoreKeysKeyboardColumn = keyAttr.getInt(R.styleable.Keyboard_Key_maxMoreKeysColumn, 5)
             params.mIconsSet.loadIcons(mResources, mContext.theme)
-            params.mTextsSet.setLocale(id.getLocale(), mContext)
+            params.mTextsSet.setLocale(id.getLocale()!!, mContext)
         } finally { keyAttr.recycle(); keyboardAttr.recycle() }
     }
 
@@ -163,7 +164,7 @@ open class KeyboardBuilder<KP : KeyboardParams>(val mContext: Context, protected
         val attr = Xml.asAttributeSet(parser)
         val keyboardAttr = mResources.obtainAttributes(attr, R.styleable.Keyboard_Include)
         val includeAttr = mResources.obtainAttributes(attr, R.styleable.Keyboard)
-        mParams.mDefaultRowHeight = ResourceUtils.getDimensionOrFraction(includeAttr, R.styleable.Keyboard_rowHeight, mParams.mBaseHeight, mParams.mDefaultRowHeight).toInt()
+        mParams.mDefaultRowHeight = ResourceUtils.getDimensionOrFraction(includeAttr, R.styleable.Keyboard_rowHeight, mParams.mBaseHeight, mParams.mDefaultRowHeight.toFloat()).toInt()
         val keyAttr = mResources.obtainAttributes(attr, R.styleable.Keyboard_Key)
         var keyboardLayout = 0
         try {
@@ -272,10 +273,10 @@ open class KeyboardBuilder<KP : KeyboardParams>(val mContext: Context, protected
         const val TAG_KEY_STYLE = "key-style"
         private const val DEFAULT_KEYBOARD_COLUMNS = 10
         private const val DEFAULT_KEYBOARD_ROWS = 4
-        private fun matchString(a: TypedArray, index: Int, value: String?): Boolean = !a.hasValue(index) || StringUtils.containsInArray(value, a.getString(index).split("\\|".toRegex()).toTypedArray())
+        private fun matchString(a: TypedArray, index: Int, value: String?): Boolean = !a.hasValue(index) || StringUtils.containsInArray(value, (a.getString(index) ?: "").split("\\|".toRegex()).toTypedArray())
         private fun matchInteger(a: TypedArray, index: Int, value: Int): Boolean = !a.hasValue(index) || a.getInt(index, 0) == value
         private fun matchBoolean(a: TypedArray, index: Int, value: Boolean): Boolean = !a.hasValue(index) || a.getBoolean(index, false) == value
-        private fun matchTypedValue(a: TypedArray, index: Int, intValue: Int, strValue: String?): Boolean { val v = a.peekValue(index) ?: return true; return if (ResourceUtils.isIntegerValue(v)) intValue == a.getInt(index, 0) else if (ResourceUtils.isStringValue(v)) StringUtils.containsInArray(strValue, a.getString(index).split("\\|".toRegex()).toTypedArray()) else false }
+        private fun matchTypedValue(a: TypedArray, index: Int, intValue: Int, strValue: String?): Boolean { val v = a.peekValue(index) ?: return true; return if (ResourceUtils.isIntegerValue(v)) intValue == a.getInt(index, 0) else if (ResourceUtils.isStringValue(v)) StringUtils.containsInArray(strValue, (a.getString(index) ?: "").split("\\|".toRegex()).toTypedArray()) else false }
         private fun matchLocaleCodes(caseAttr: TypedArray, locale: java.util.Locale?): Boolean = matchString(caseAttr, R.styleable.Keyboard_Case_localeCode, locale?.toString())
         private fun matchLanguageCodes(caseAttr: TypedArray, locale: java.util.Locale?): Boolean = matchString(caseAttr, R.styleable.Keyboard_Case_languageCode, locale?.language)
         private fun matchCountryCodes(caseAttr: TypedArray, locale: java.util.Locale?): Boolean = matchString(caseAttr, R.styleable.Keyboard_Case_countryCode, locale?.country)

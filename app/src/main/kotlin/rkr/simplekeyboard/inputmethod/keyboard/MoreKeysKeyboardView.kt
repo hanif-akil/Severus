@@ -27,7 +27,7 @@ open class MoreKeysKeyboardView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val keyboard = keyboard
+        val keyboard = getKeyboard()
         if (keyboard != null) {
             val width = keyboard.mOccupiedWidth + paddingLeft + paddingRight
             val height = keyboard.mOccupiedHeight + paddingTop + paddingBottom
@@ -61,7 +61,7 @@ open class MoreKeysKeyboardView @JvmOverloads constructor(
         controller.onShowMoreKeysPanel(this)
     }
 
-    protected open fun getDefaultCoordX(): Int = (keyboard as? MoreKeysKeyboard)?.getDefaultCoordX() ?: 0
+    protected open fun getDefaultCoordX(): Int = (getKeyboard() as? MoreKeysKeyboard)?.getDefaultCoordX() ?: 0
 
     override fun onDownEvent(x: Int, y: Int, pointerId: Int) {
         mActivePointerId = pointerId

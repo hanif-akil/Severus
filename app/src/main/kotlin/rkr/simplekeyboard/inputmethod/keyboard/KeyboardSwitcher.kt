@@ -92,7 +92,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         val currentSettingsValues = Settings.getInstance().current
         setMainKeyboardFrame(currentSettingsValues, toggleState)
         val keyboardView = mKeyboardView ?: return
-        val oldKeyboard = keyboardView.keyboard
+        val oldKeyboard = keyboardView.getKeyboard()
         val newKeyboard = mKeyboardLayoutSet!!.getKeyboard(keyboardId)
         keyboardView.setKeyboard(newKeyboard)
         keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues!!.mKeyPreviewPopupOn, currentSettingsValues.mKeyPreviewPopupDismissDelay)
@@ -101,7 +101,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         keyboardView.startDisplayLanguageOnSpacebar(subtypeChanged, languageOnSpacebarFormatType)
     }
 
-    fun getKeyboard(): Keyboard? = mKeyboardView?.keyboard
+    fun getKeyboard(): Keyboard? = mKeyboardView?.getKeyboard()
 
     fun resetKeyboardStateToAlphabet(currentAutoCapsState: Int, currentRecapitalizeState: Int) {
         mState.onResetKeyboardStateToAlphabet(currentAutoCapsState, currentRecapitalizeState)
@@ -140,7 +140,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
 
     fun isShowingKeyboardId(vararg keyboardIds: Int): Boolean {
         if (mKeyboardView == null || !mKeyboardView!!.isShown) return false
-        val activeKeyboardId = mKeyboardView!!.keyboard?.mId?.mElementId ?: return false
+        val activeKeyboardId = mKeyboardView!!.getKeyboard()?.mId?.mElementId ?: return false
         return keyboardIds.any { it == activeKeyboardId }
     }
 

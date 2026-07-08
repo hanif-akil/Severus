@@ -61,14 +61,14 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
     override fun onStartInputView(editorInfo: EditorInfo?, restarting: Boolean) {
         super.onStartInputView(editorInfo, restarting)
         val keyboardSwitcher = KeyboardSwitcher.getInstance()
-        keyboardSwitcher.loadKeyboard(editorInfo, mSettingsValues!!, currentAutoCapsState, currentRecapitalizeState)
+        keyboardSwitcher.loadKeyboard(editorInfo!!, mSettingsValues!!, currentAutoCapsState, currentRecapitalizeState)
         mInputLogic!!.onStartInputView(restarting)
     }
 
     override fun onFinishInputView(finishingInput: Boolean) {
         super.onFinishInputView(finishingInput)
         mInputLogic!!.onFinishInput()
-        val mainKeyboardView = KeyboardSwitcher.getInstance().mainKeyboardView
+        val mainKeyboardView = KeyboardSwitcher.getInstance().getMainKeyboardView()
         mainKeyboardView?.closing()
     }
 
@@ -104,7 +104,7 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
 
     fun shouldShowLanguageSwitchKey(): Boolean = mSettingsValues?.mShowsLanguageSwitchKey == true
 
-    override fun getInputView(): View? = KeyboardSwitcher.getInstance().visibleKeyboardView
+    fun getInputView(): View? = KeyboardSwitcher.getInstance().getVisibleKeyboardView()
 
     override fun onPressKey(primaryCode: Int, repeatCount: Int, isSinglePointer: Boolean) {
         KeyboardSwitcher.getInstance().onPressKey(primaryCode, isSinglePointer, currentAutoCapsState, currentRecapitalizeState)
@@ -147,11 +147,7 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
     override fun onUpWithDeletePointerActive() {}
     override fun onUpWithSpacePointerActive() {}
     override fun onToggleClipboardHistory() {
-        KeyboardSwitcher.getInstance().mainKeyboardView?.toggleClipboardHistoryPanel()
-    }
-
-    fun onTextInput(text: String) {
-        mInputLogic?.onTextInput(text)
+        KeyboardSwitcher.getInstance().getMainKeyboardView()?.toggleClipboardHistoryPanel()
     }
 
     private val currentAutoCapsState: Int
@@ -167,10 +163,10 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
         }
 
     private val currentRecapitalizeState: Int
-        get() = if (mRecapitalizeStatus.isStarted) mRecapitalizeStatus.currentMode else RecapitalizeStatus.NOT_A_RECAPITALIZE_MODE
+        get() = if (mRecapitalizeStatus.isStarted()) mRecapitalizeStatus.getCurrentMode() else RecapitalizeStatus.NOT_A_RECAPITALIZE_MODE
 
-    fun getMaxWidth(): Int {
-        val mainKeyboardView = KeyboardSwitcher.getInstance().mainKeyboardView
+    override fun getMaxWidth(): Int {
+        val mainKeyboardView = KeyboardSwitcher.getInstance().getMainKeyboardView()
         return mainKeyboardView?.width ?: resources.displayMetrics.widthPixels
     }
 
@@ -201,13 +197,10 @@ class LatinIME : InputMethodService(), KeyboardActionListener {
             removeMessages(MSG_UPDATE_SHIFT_STATE)
             sendEmptyMessageDelayed(MSG_UPDATE_SHIFT_STATE, 50)
         }
-
-        companion object {
-            private const val MSG_UPDATE_SHIFT_STATE = 0
-        }
     }
 
     companion object {
         private const val TAG = "LatinIME"
+        private const val MSG_UPDATE_SHIFT_STATE = 0
     }
 }

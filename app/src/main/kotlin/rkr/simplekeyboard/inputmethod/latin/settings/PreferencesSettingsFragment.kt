@@ -15,7 +15,7 @@ class PreferencesSettingsFragment : SubScreenFragment() {
         }
     }
 
-    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String?) {
         if (key == Settings.PREF_SHOW_SPECIAL_CHARS || key == Settings.PREF_SHOW_NUMBER_ROW) {
             KeyboardLayoutSet.onKeyboardThemeChanged()
         }

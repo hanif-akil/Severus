@@ -13,13 +13,13 @@ class SettingsFragment : InputMethodSettingsFragment() {
         super.onCreate(icicle)
         setHasOptionsMenu(true)
         addPreferencesFromResource(R.xml.prefs)
-        preferenceScreen.title = ApplicationUtils.getActivityTitleResId(activity, SettingsActivity::class.java)
+        preferenceScreen.title = resources.getString(ApplicationUtils.getActivityTitleResId(activity, SettingsActivity::class.java))
         val res = resources
-        findPreference("privacy_policy").onPreferenceClickListener = {
+        findPreference("privacy_policy").onPreferenceClickListener = android.preference.Preference.OnPreferenceClickListener {
             openUrl(res.getString(R.string.privacy_policy_url))
             true
         }
-        findPreference("license").onPreferenceClickListener = {
+        findPreference("license").onPreferenceClickListener = android.preference.Preference.OnPreferenceClickListener {
             openUrl(res.getString(R.string.license_url))
             true
         }

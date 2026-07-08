@@ -10,7 +10,7 @@ object CapsModeUtils {
         return (codePoint == Constants.CODE_DOUBLE_QUOTE || codePoint == Constants.CODE_SINGLE_QUOTE ||
                 codePoint == Constants.CODE_INVERTED_QUESTION_MARK ||
                 codePoint == Constants.CODE_INVERTED_EXCLAMATION_MARK ||
-                Character.getType(codePoint) == Character.START_PUNCTUATION)
+                Character.getType(codePoint) == Character.START_PUNCTUATION.toInt())
     }
 
     fun getCapsMode(
@@ -67,7 +67,7 @@ object CapsModeUtils {
             while (i > 0) {
                 val c = cs[i - 1].code
                 if (c != Constants.CODE_DOUBLE_QUOTE && c != Constants.CODE_SINGLE_QUOTE &&
-                    Character.getType(c) != Character.END_PUNCTUATION
+                    Character.getType(c) != Character.END_PUNCTUATION.toInt()
                 ) break
                 i--
             }

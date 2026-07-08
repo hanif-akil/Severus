@@ -26,7 +26,7 @@ class AppearanceSettingsFragment : SubScreenFragment() {
         }
     }
 
-    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String?) {
         if (KeyboardTheme.KEYBOARD_THEME_KEY == key) {
             ThemeSettingsFragment.updateKeyboardThemeSummary(findPreference(Settings.SCREEN_THEME))
             val theme = KeyboardTheme.getKeyboardTheme(prefs)

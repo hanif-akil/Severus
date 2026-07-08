@@ -49,4 +49,6 @@ class KeyPressSettingsFragment : SubScreenFragment() {
             override fun feedbackValue(value: Int) {}
         })
     }
+
+    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String?) {}
 }

@@ -133,7 +133,7 @@ class Settings private constructor() : BroadcastReceiver(), SharedPreferences.On
         }
 
         fun readKeypressSoundEnabled(prefs: SharedPreferences, res: Resources): Boolean = prefs.getBoolean(PREF_SOUND_ON, res.getBoolean(R.bool.config_default_sound_enabled))
-        fun readVibrationEnabled(prefs: SharedPreferences, res: Resources): Boolean = AudioAndHapticFeedbackManager.getInstance().hasVibrator && prefs.getBoolean(PREF_VIBRATE_ON, res.getBoolean(R.bool.config_default_vibration_enabled))
+        fun readVibrationEnabled(prefs: SharedPreferences, res: Resources): Boolean = AudioAndHapticFeedbackManager.getInstance().hasVibrator() && prefs.getBoolean(PREF_VIBRATE_ON, res.getBoolean(R.bool.config_default_vibration_enabled))
         fun readKeyPreviewPopupEnabled(prefs: SharedPreferences, res: Resources): Boolean = prefs.getBoolean(PREF_POPUP_ON, res.getBoolean(R.bool.config_default_key_preview_popup))
         fun readShowLanguageSwitchKey(prefs: SharedPreferences): Boolean = prefs.getBoolean(PREF_SHOW_LANGUAGE_SWITCH_KEY, true)
         fun readUseOnScreenKeyboard(prefs: SharedPreferences): Boolean = prefs.getBoolean(PREF_USE_ON_SCREEN, false)

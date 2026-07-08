@@ -26,7 +26,7 @@ object ApplicationUtils {
             val packageName = context.packageName
             val info = context.packageManager.getPackageInfo(packageName, 0)
             @Suppress("DEPRECATION")
-            return info.versionName
+            return info.versionName ?: ""
         } catch (e: NameNotFoundException) {
             Log.e(TAG, "Could not find version info.", e)
         }

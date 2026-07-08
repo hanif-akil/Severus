@@ -1,6 +1,7 @@
 package rkr.simplekeyboard.inputmethod.latin.settings
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.Preference
 import android.preference.PreferenceScreen
@@ -11,7 +12,7 @@ import rkr.simplekeyboard.inputmethod.latin.settings.RadioButtonPreference.OnRad
 class ThemeSettingsFragment : SubScreenFragment(), OnRadioButtonClickedListener {
     private var mSelectedThemeId = 0
 
-    internal class KeyboardThemePreference(context: Context, name: String, val mThemeId: Int) : RadioButtonPreference(context) {
+    internal class KeyboardThemePreference(context: Context, name: String, val mThemeId: Int) : Preference(context) {
         init {
             title = name
         }
@@ -51,6 +52,8 @@ class ThemeSettingsFragment : SubScreenFragment(), OnRadioButtonClickedListener 
         KeyboardTheme.saveKeyboardThemeId(mSelectedThemeId, sharedPreferences)
         Settings.removeKeyboardColor(sharedPreferences)
     }
+
+    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String?) {}
 
     private fun updateSelected() {
         val screen = preferenceScreen

@@ -129,9 +129,10 @@ class RecapitalizeStatus {
             && nonWhitespaceStart < nonWhitespaceEnd
         ) {
             mCursorEndAfter = mCursorStartBefore + nonWhitespaceEnd
-            mCursorStartBefore = mCursorStartAfter = mCursorStartBefore + nonWhitespaceStart
-            mStringAfter = mStringBefore =
-                mStringBefore.substring(nonWhitespaceStart, nonWhitespaceEnd)
+            mCursorStartBefore = mCursorStartBefore + nonWhitespaceStart
+            mCursorStartAfter = mCursorStartBefore
+            mStringBefore = mStringBefore.substring(nonWhitespaceStart, nonWhitespaceEnd)
+            mStringAfter = mStringBefore
         }
     }
 

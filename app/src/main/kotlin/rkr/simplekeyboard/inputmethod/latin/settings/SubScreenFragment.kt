@@ -48,7 +48,7 @@ abstract class SubScreenFragment : PreferenceFragment(), SharedPreferences.OnSha
         super.onDestroy()
     }
 
-    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String) {}
+    override fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String?) {}
 
     companion object {
         fun setPreferenceEnabled(prefKey: String, enabled: Boolean, screen: PreferenceScreen) {

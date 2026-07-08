@@ -142,7 +142,7 @@ open class KeyboardView @JvmOverloads constructor(
         val bgWidth = key.width + padding.left + padding.right; val bgHeight = key.height + padding.top + padding.bottom
         val bgX = -padding.left.toFloat(); val bgY = -padding.top.toFloat()
         val bounds = background.bounds
-        if (bgWidth != bounds.right() || bgHeight != bounds.bottom()) background.setBounds(0, 0, bgWidth, bgHeight)
+        if (bgWidth != bounds.right || bgHeight != bounds.bottom) background.setBounds(0, 0, bgWidth, bgHeight)
         canvas.translate(bgX, bgY); background.draw(canvas); canvas.translate(-bgX, -bgY)
     }
 
@@ -160,7 +160,7 @@ open class KeyboardView @JvmOverloads constructor(
             if (key.isAlignLabelOffCenter()) { labelX = centerX + params.mLabelOffCenterRatio * labelCharWidth; paint.textAlign = Paint.Align.LEFT } else { labelX = centerX; paint.textAlign = Paint.Align.CENTER }
             if (key.needsAutoXScale()) { val ratio = minOf(1f, keyWidth * MAX_LABEL_RATIO / TypefaceUtils.getStringWidth(label, paint)); if (key.needsAutoScale()) paint.textSize = paint.textSize * ratio else paint.textScaleX = ratio }
             paint.color = key.selectTextColor(params)
-            if (mKeyTextShadowRadius > 0f) paint.setShadowLayer(mKeyTextShadowRadius, 0f, 0f, params.mTextShadowColor.toFloat()) else paint.clearShadowLayer()
+            if (mKeyTextShadowRadius > 0f) paint.setShadowLayer(mKeyTextShadowRadius, 0f, 0f, params.mTextShadowColor) else paint.clearShadowLayer()
             blendAlpha(paint, params.mAnimAlpha); canvas.drawText(label, 0, label.length, labelX, labelBaseline, paint); paint.clearShadowLayer(); paint.textScaleX = 1f
         }
         val hintLabel = key.getHintLabel()
@@ -174,7 +174,7 @@ open class KeyboardView @JvmOverloads constructor(
             else { val hintDigitWidth = TypefaceUtils.getReferenceDigitWidth(paint); val hintLabelWidth = TypefaceUtils.getStringWidth(hintLabel, paint); hintX = keyWidth - mKeyHintLetterPadding - maxOf(hintDigitWidth, hintLabelWidth) / 2f; hintBaseline = -paint.ascent(); paint.textAlign = Paint.Align.CENTER }
             val adjustmentY = params.mHintLabelVerticalAdjustment * labelCharHeight; canvas.drawText(hintLabel, 0, hintLabel.length, hintX, hintBaseline + adjustmentY, paint)
         }
-        if (label == null && icon != null) { val iconWidth = minOf(icon.intrinsicWidth, keyWidth); val iconHeight = icon.intrinsicHeight; val iconY = if (key.isAlignIconToBottom) keyHeight - iconHeight else (keyHeight - iconHeight) / 2; val iconX = (keyWidth - iconWidth) / 2; drawIcon(canvas, icon, iconX, iconY, iconWidth, iconHeight) }
+        if (label == null && icon != null) { val iconWidth = minOf(icon.intrinsicWidth, keyWidth); val iconHeight = icon.intrinsicHeight; val iconY = if (key.isAlignIconToBottom()) keyHeight - iconHeight else (keyHeight - iconHeight) / 2; val iconX = (keyWidth - iconWidth) / 2; drawIcon(canvas, icon, iconX, iconY, iconWidth, iconHeight) }
     }
 
     open fun newLabelPaint(key: Key?): Paint {

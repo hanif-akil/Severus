@@ -13,17 +13,17 @@ class KeyboardId(
     val mElementId: Int,
     params: KeyboardLayoutSet.Params
 ) {
-    val mSubtype: Subtype = params.mSubtype
+    val mSubtype: Subtype = params.mSubtype!!
     val mThemeId: Int = params.mKeyboardThemeId
     val mWidth: Int = params.mKeyboardWidth
     val mHeight: Int = params.mKeyboardHeight
     val mBottomOffset: Int = params.mKeyboardBottomOffset
     val mMode: Int = params.mMode
-    val mEditorInfo: EditorInfo = params.mEditorInfo
+    val mEditorInfo: EditorInfo = params.mEditorInfo!!
     val mClobberSettingsKey: Boolean = params.mNoSettingsKey
     val mLanguageSwitchKeyEnabled: Boolean = params.mLanguageSwitchKeyEnabled
-    val mCustomActionLabel: String? = if (params.mEditorInfo.actionLabel != null) {
-        params.mEditorInfo.actionLabel.toString()
+    val mCustomActionLabel: String? = if (params.mEditorInfo?.actionLabel != null) {
+        params.mEditorInfo!!.actionLabel.toString()
     } else null
     val mShowMoreKeys: Boolean = params.mShowMoreKeys
     val mShowNumberRow: Boolean = params.mShowNumberRow

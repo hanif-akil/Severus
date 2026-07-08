@@ -11,7 +11,7 @@ class Keyboard(params: KeyboardParams) {
     val mId: KeyboardId? = params.mId
     val mOccupiedHeight: Int = params.mOccupiedHeight
     val mOccupiedWidth: Int = params.mOccupiedWidth
-    val mBottomPadding: Float = params.mBottomPadding
+    val mBottomPadding: Float = params.mBottomPadding.toFloat()
     val mVerticalGap: Float = params.mVerticalGap
     val mHorizontalGap: Float = params.mHorizontalGap
     val mKeyVisualAttributes: KeyVisualAttributes? = params.mKeyVisualAttributes

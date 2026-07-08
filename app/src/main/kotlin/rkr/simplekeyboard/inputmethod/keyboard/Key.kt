@@ -91,7 +91,7 @@ open class Key : Comparable<Key> {
         style: KeyStyle, params: KeyboardParams,
         row: KeyboardRow
     ) {
-        row.setCurrentKey(keyAttr, isSpacer())
+        row.setCurrentKey(keyAttr, isSpacer)
 
         mDefinedWidth = row.getKeyWidth()
         mDefinedHeight = row.getKeyHeight()
@@ -121,8 +121,8 @@ open class Key : Comparable<Key> {
 
         mLabelFlags = style.getFlags(keyAttr, R.styleable.Keyboard_Key_keyLabelFlags) or
                 row.getDefaultKeyLabelFlags()
-        val needsToUpcase = needsToUpcase(mLabelFlags, params.mId.mElementId)
-        val localeForUpcasing = params.mId.getLocale()
+        val needsToUpcase = needsToUpcase(mLabelFlags, params.mId!!.mElementId)
+        val localeForUpcasing = params.mId!!.getLocale()!!
         var actionFlags = style.getFlags(keyAttr, R.styleable.Keyboard_Key_keyActionFlags)
         var moreKeys = style.getStringArray(keyAttr, R.styleable.Keyboard_Key_moreKeys)
 
@@ -167,7 +167,7 @@ open class Key : Comparable<Key> {
 
         val code = KeySpecParser.getCode(keySpec)
         if ((mLabelFlags and LABEL_FLAGS_FROM_CUSTOM_ACTION_LABEL) != 0) {
-            mLabel = params.mId.mCustomActionLabel
+            mLabel = params.mId!!.mCustomActionLabel
         } else if (code >= Character.MIN_SUPPLEMENTARY_CODE_POINT) {
             mLabel = StringBuilder().appendCodePoint(code).toString()
         } else {
@@ -437,6 +437,8 @@ open class Key : Comparable<Key> {
 
     val y: Int get() = mY
 
+    val visualAttributes: KeyVisualAttributes? get() = mKeyVisualAttributes
+
     val topPadding: Int get() = mY - mHitbox.top
 
     val bottomPadding: Int get() = mHitbox.bottom - mY - mHeight
@@ -475,7 +477,7 @@ open class Key : Comparable<Key> {
         return dx * dx + dy * dy
     }
 
-    class KeyBackgroundState private constructor(private val mReleasedState: IntArray, private val mPressedState: IntArray) {
+    class KeyBackgroundState private constructor(private val mReleasedState: IntArray, private val mPressedState: IntArray = intArrayOf()) {
         fun getState(pressed: Boolean): IntArray = if (pressed) mPressedState else mReleasedState
 
         companion object {

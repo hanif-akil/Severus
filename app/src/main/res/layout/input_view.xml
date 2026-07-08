@@ -45,7 +45,7 @@
             android:src="@drawable/sym_keyboard_clipboard"
             android:scaleType="centerInside"
             android:contentDescription="Clipboard"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:background="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/toolbar_settings"
@@ -56,7 +56,7 @@
             android:src="@drawable/sym_keyboard_settings"
             android:scaleType="centerInside"
             android:contentDescription="Settings"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:background="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/toolbar_numpad"
@@ -67,7 +67,7 @@
             android:src="@drawable/sym_keyboard_numpad"
             android:scaleType="centerInside"
             android:contentDescription="Number pad"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
     <FrameLayout

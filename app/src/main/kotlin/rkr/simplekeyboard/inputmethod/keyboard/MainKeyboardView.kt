@@ -159,7 +159,7 @@ class MainKeyboardView @JvmOverloads constructor(
             moreKeysKeyboard = builder.build(); mMoreKeysKeyboardCache[key] = moreKeysKeyboard
         }
         val moreKeysKeyboardView = mMoreKeysKeyboardContainer.findViewById<MoreKeysKeyboardView>(R.id.more_keys_keyboard_view)
-        moreKeysKeyboardView.keyboard = moreKeysKeyboard
+        moreKeysKeyboardView.setKeyboard(moreKeysKeyboard)
         mMoreKeysKeyboardContainer.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         val lastCoords = CoordinateUtils.newInstance(); tracker.getLastCoordinates(lastCoords)
         val keyPreviewEnabled = mKeyPreviewDrawParams.isPopupEnabled() && !key.noKeyPreview

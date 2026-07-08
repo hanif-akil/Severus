@@ -320,8 +320,6 @@ open class Key : Comparable<Key> {
         get() = (mActionFlags and ACTION_FLAGS_ENABLE_LONG_PRESS != 0) &&
                 (mLabelFlags and LABEL_FLAGS_SHIFTED_LETTER_ACTIVATED == 0)
 
-    fun getVisualAttributes(): KeyVisualAttributes? = mKeyVisualAttributes
-
     fun selectTypeface(params: KeyDrawParams): Typeface = when (mLabelFlags and LABEL_FLAGS_FONT_MASK) {
         LABEL_FLAGS_FONT_NORMAL -> Typeface.DEFAULT
         LABEL_FLAGS_FONT_MONO_SPACE -> Typeface.MONOSPACE

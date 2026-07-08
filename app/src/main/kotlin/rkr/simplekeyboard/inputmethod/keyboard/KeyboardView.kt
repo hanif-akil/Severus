@@ -71,10 +71,6 @@ open class KeyboardView @JvmOverloads constructor(
     }
 
     fun getKeyboard(): Keyboard? = mKeyboard
-
-    var keyboard: Keyboard?
-        get() = mKeyboard
-        set(value) { mKeyboard = value }
     protected val verticalCorrection: Float get() = mVerticalCorrection
     fun getKeyDrawParams(): KeyDrawParams = mKeyDrawParams
 

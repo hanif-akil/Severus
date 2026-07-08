@@ -94,7 +94,7 @@ class KeyboardSwitcher private constructor() : KeyboardState.SwitchActions {
         val keyboardView = mKeyboardView ?: return
         val oldKeyboard = keyboardView.keyboard
         val newKeyboard = mKeyboardLayoutSet!!.getKeyboard(keyboardId)
-        keyboardView.keyboard = newKeyboard
+        keyboardView.setKeyboard(newKeyboard)
         keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues!!.mKeyPreviewPopupOn, currentSettingsValues.mKeyPreviewPopupDismissDelay)
         val subtypeChanged = oldKeyboard == null || newKeyboard.mId!!.mSubtype != oldKeyboard.mId!!.mSubtype
         val languageOnSpacebarFormatType = LanguageOnSpacebarUtils.getLanguageOnSpacebarFormatType(newKeyboard.mId!!.mSubtype)

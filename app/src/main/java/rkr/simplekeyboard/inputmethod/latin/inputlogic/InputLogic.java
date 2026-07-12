@@ -29,8 +29,10 @@ import android.view.inputmethod.EditorInfo;
 
 import rkr.simplekeyboard.inputmethod.event.Event;
 import rkr.simplekeyboard.inputmethod.event.InputTransaction;
+import rkr.simplekeyboard.inputmethod.latin.AvroPhoneticConverter;
 import rkr.simplekeyboard.inputmethod.latin.LatinIME;
 import rkr.simplekeyboard.inputmethod.latin.RichInputConnection;
+import rkr.simplekeyboard.inputmethod.latin.RichInputMethodManager;
 import rkr.simplekeyboard.inputmethod.latin.common.Constants;
 import rkr.simplekeyboard.inputmethod.latin.common.StringUtils;
 import rkr.simplekeyboard.inputmethod.latin.settings.SettingsValues;
@@ -203,6 +205,12 @@ public final class InputLogic {
             case Constants.CODE_PASTE:
                 mConnection.pasteClipboard();
                 break;
+            case Constants.CODE_COPY:
+                mConnection.copySelectedText();
+                break;
+            case Constants.CODE_CUT:
+                mConnection.cutSelectedText();
+                break;
             case Constants.CODE_ACTION_NEXT:
                 performEditorAction(EditorInfo.IME_ACTION_NEXT);
                 break;
@@ -295,7 +303,12 @@ public final class InputLogic {
      * @param event The event to handle.
      */
     private void handleNonSeparatorEvent(final Event event) {
-        sendKeyCodePoint(event.mCodePoint);
+        // Check if Avro Phonetic layout is active
+        if (isAvroPhoneticLayout()) {
+            handleAvroPhoneticInput(event);
+        } else {
+            sendKeyCodePoint(event.mCodePoint);
+        }
     }
 
     /**
@@ -540,5 +553,44 @@ public final class InputLogic {
         }
 
         mConnection.commitText(StringUtils.newSingleCodePointString(codePoint), 1);
+    }
+
+    /**
+     * Check if the current layout is Avro Phonetic.
+     */
+    private boolean isAvroPhoneticLayout() {
+        final String layoutSet = RichInputMethodManager.getInstance().getCurrentSubtype().getKeyboardLayoutSet();
+        return SubtypeLocaleUtils.LAYOUT_BENGALI_AVRO.equals(layoutSet);
+    }
+
+    /**
+     * Handle input for Avro Phonetic layout.
+     * Buffers Roman characters and converts them to Bengali using the Avro Phonetic converter.
+     */
+    private void handleAvroPhoneticInput(final Event event) {
+        final int codePoint = event.mCodePoint;
+        final char c = (char) codePoint;
+
+        // For Avro Phonetic, we need to buffer characters and convert them
+        // For now, use a simple approach: convert single characters immediately
+        if (codePoint >= 'a' && codePoint <= 'z') {
+            final String roman = String.valueOf(c);
+            final String bengali = AvroPhoneticConverter.convert(roman);
+            if (bengali != null && !bengali.isEmpty()) {
+                mConnection.commitText(bengali, 1);
+            } else {
+                sendKeyCodePoint(codePoint);
+            }
+        } else if (codePoint >= 'A' && codePoint <= 'Z') {
+            final String roman = String.valueOf(Character.toLowerCase(c));
+            final String bengali = AvroPhoneticConverter.convert(roman);
+            if (bengali != null && !bengali.isEmpty()) {
+                mConnection.commitText(bengali, 1);
+            } else {
+                sendKeyCodePoint(codePoint);
+            }
+        } else {
+            sendKeyCodePoint(codePoint);
+        }
     }
 }

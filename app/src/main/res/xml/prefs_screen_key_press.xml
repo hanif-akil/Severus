@@ -44,4 +44,8 @@
         latin:minValue="@integer/config_min_longpress_timeout"
         latin:maxValue="@integer/config_max_longpress_timeout"
         latin:stepValue="@integer/config_longpress_timeout_step" />
+    <SwitchPreference
+        android:key="pref_long_press_cvx"
+        android:title="@string/long_press_cvx"
+        android:defaultValue="false" />
 </PreferenceScreen>

@@ -752,6 +752,28 @@ public final class PointerTracker implements PointerTrackerQueue.Element {
         if (key == null) {
             return;
         }
+        // Handle long-press C/V/X for Copy/Paste/Cut when enabled
+        if (Settings.getInstance().getCurrent().mLongPressCvxEnabled) {
+            final int code = key.getCode();
+            final int longPressCode;
+            if (code == 'c' || code == 'C') {
+                longPressCode = Constants.CODE_COPY;
+            } else if (code == 'v' || code == 'V') {
+                longPressCode = Constants.CODE_PASTE;
+            } else if (code == 'x' || code == 'X') {
+                longPressCode = Constants.CODE_CUT;
+            } else {
+                longPressCode = Constants.NOT_A_CODE;
+            }
+            if (longPressCode != Constants.NOT_A_CODE) {
+                cancelKeyTracking();
+                sListener.onPressKey(longPressCode, 0 /* repeatCount */, true /* isSinglePointer */);
+                sListener.onCodeInput(longPressCode, Constants.NOT_A_COORDINATE,
+                        Constants.NOT_A_COORDINATE, false /* isKeyRepeat */);
+                sListener.onReleaseKey(longPressCode, false /* withSliding */);
+                return;
+            }
+        }
         if (key.hasNoPanelAutoMoreKey()) {
             cancelKeyTracking();
             final int moreKeyCode = key.getMoreKeys()[0].mCode;

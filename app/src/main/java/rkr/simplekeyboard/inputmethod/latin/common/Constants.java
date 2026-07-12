@@ -106,6 +106,8 @@ public final class Constants {
     public static final int CODE_UNSPECIFIED = -13;
     public static final int CODE_CLIPBOARD = -14;
     public static final int CODE_NUMPAD = -15;
+    public static final int CODE_COPY = -16;
+    public static final int CODE_CUT = -17;
 
     public static boolean isLetterCode(final int code) {
         return code >= CODE_SPACE;
@@ -126,6 +128,8 @@ public final class Constants {
         case CODE_SHIFT_ENTER: return "shiftEnter";
         case CODE_CLIPBOARD: return "clipboard";
         case CODE_NUMPAD: return "numpad";
+        case CODE_COPY: return "copy";
+        case CODE_CUT: return "cut";
         case CODE_UNSPECIFIED: return "unspec";
         case CODE_TAB: return "tab";
         case CODE_ENTER: return "enter";

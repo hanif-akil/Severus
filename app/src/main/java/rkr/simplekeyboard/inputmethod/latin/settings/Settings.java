@@ -66,6 +66,7 @@ public final class Settings extends BroadcastReceiver implements SharedPreferenc
     public static final String PREF_DELETE_SWIPE = "pref_delete_swipe";
     public static final String PREF_CLIPBOARD_MAX_ITEMS = "pref_clipboard_max_items";
     public static final String PREF_SHOW_TOOLBAR = "pref_show_toolbar";
+    public static final String PREF_LONG_PRESS_CVX = "pref_long_press_cvx";
 
     private static final float UNDEFINED_PREFERENCE_VALUE_FLOAT = -1.0f;
     private static final int UNDEFINED_PREFERENCE_VALUE_INT = -1;
@@ -155,6 +156,7 @@ public final class Settings extends BroadcastReceiver implements SharedPreferenc
                     case PREF_ENABLE_IME_SWITCH:
                     case PREF_DELETE_SWIPE:
                     case PREF_SPACE_SWIPE:
+                    case PREF_LONG_PRESS_CVX:
                     case PREF_VIBRATE_ON:
                     case PREF_SOUND_ON:
                     case PREF_POPUP_ON:
@@ -259,6 +261,10 @@ public final class Settings extends BroadcastReceiver implements SharedPreferenc
 
     public static boolean readShowToolbar(final SharedPreferences prefs) {
         return prefs.getBoolean(PREF_SHOW_TOOLBAR, true);
+    }
+
+    public static boolean readLongPressCvxEnabled(final SharedPreferences prefs) {
+        return prefs.getBoolean(PREF_LONG_PRESS_CVX, false);
     }
 
     public static String readPrefSubtypes(final SharedPreferences prefs) {

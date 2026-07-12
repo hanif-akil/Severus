@@ -378,6 +378,14 @@ public final class RichInputConnection {
         mIC.performContextMenuAction(android.R.id.paste);
     }
 
+    public void copySelectedText() {
+        mIC.performContextMenuAction(android.R.id.copy);
+    }
+
+    public void cutSelectedText() {
+        mIC.performContextMenuAction(android.R.id.cut);
+    }
+
     public void sendKeyEvent(final KeyEvent keyEvent) {
         RichInputMethodManager.getInstance().resetSubtypeCycleOrder();
         if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {

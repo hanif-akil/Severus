@@ -221,6 +221,7 @@ public final class SubtypeLocaleUtils {
     public static final String LAYOUT_AZERTY = "azerty";
     public static final String LAYOUT_BENGALI = "bengali";
     public static final String LAYOUT_BENGALI_AKKHOR = "bengali_akkhor";
+    public static final String LAYOUT_BENGALI_AVRO = "bengali_avro";
     public static final String LAYOUT_BENGALI_UNIJOY = "bengali_unijoy";
     public static final String LAYOUT_BEPO = "bepo";
     public static final String LAYOUT_BULGARIAN = "bulgarian";
@@ -491,6 +492,7 @@ public final class SubtypeLocaleUtils {
                     break;
                 case LOCALE_BENGALI_INDIA:
                     addLayout(LAYOUT_BENGALI);
+                    addLayout(LAYOUT_BENGALI_AVRO, R.string.subtype_avro);
                     break;
                 case LOCALE_GREEK:
                     addLayout(LAYOUT_GREEK);

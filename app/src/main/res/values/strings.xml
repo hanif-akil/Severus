@@ -79,6 +79,8 @@
     <string name="subtype_f">F</string>
     <!-- Description for Bengali (Akkhor) keyboard layout. -->
     <string name="subtype_akkhor">Akkhor</string>
+    <!-- Description for Bengali (Avro Phonetic) keyboard layout. -->
+    <string name="subtype_avro">Avro Phonetic</string>
     <!-- Description for Ergo-L keyboard layout. -->
     <string name="subtype_ergol">Ergo-L</string>
     <!-- Description for Hcesar keyboard layout. -->
@@ -129,4 +131,5 @@
     <string name="license">License</string>
     <string name="show_toolbar">Show toolbar</string>
     <string name="clipboard_max_items">Maximum clipboard items</string>
+    <string name="long_press_cvx">Long-press C/V/X for Copy/Paste/Cut</string>
 </resources>

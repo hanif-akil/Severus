@@ -51,6 +51,7 @@ public class SettingsValues {
     public final boolean mDeleteSwipeEnabled;
     public final int mClipboardMaxItems;
     public final boolean mShowToolbar;
+    public final boolean mLongPressCvxEnabled;
 
     // From the input box
     public final InputAttributes mInputAttributes;
@@ -95,6 +96,7 @@ public class SettingsValues {
         mDeleteSwipeEnabled = Settings.readDeleteSwipeEnabled(prefs);
         mClipboardMaxItems = Settings.readClipboardMaxItems(prefs);
         mShowToolbar = Settings.readShowToolbar(prefs);
+        mLongPressCvxEnabled = Settings.readLongPressCvxEnabled(prefs);
     }
 
     public boolean isWordSeparator(final int code) {

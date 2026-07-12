@@ -105,7 +105,7 @@ public final class AvroPhoneticConverter {
      */
     private static String convertTwoChar(String two) {
         switch (two) {
-            // Consonant + halant combinations (conjuncts)
+            // Aspirated consonants
             case "kh": return "\u0996";  // খ
             case "gh": return "\u0998";  // ঘ
             case "ch": return "\u099A";  // চ
@@ -128,11 +128,9 @@ public final class AvroPhoneticConverter {
             case "au": return "\u0994";  // ঔ
 
             // Special combinations
-            case "ng": return "\u0999";  // ঙ
             case "nk": return "\u0999\u09CD\u0995"; // ঙ্ক
             case "nt": return "\u09A8\u09CD\u09A4"; // ন্ত
             case "nd": return "\u09A8\u09CD\u09A6"; // ন্দ
-            case "shh": return "\u09B7"; // ষ
             default: return null;
         }
     }
@@ -178,12 +176,10 @@ public final class AvroPhoneticConverter {
             case 's': return "\u09B8";   // স
             case 'S': return "\u09B7";   // ষ (S = shh)
             case 'h': return "\u09B9";   // হ
-            case 'k': return "\u0995";   // ক
 
             // Special characters
             case ':': return "\u0983";   // ঃ (visarga)
             case '.': return "\u0964";   // । (danda)
-            case 'N': return "\u09A3";   // ণ
 
             // Digits
             case '0': return "\u09E6";   // ০
@@ -272,20 +268,9 @@ public final class AvroPhoneticConverter {
     private static String convertThreeChar(String three) {
         switch (three) {
             case "shh": return "\u09B7";  // ষ
-            case "kh": return "\u0996";   // খ
-            case "gh": return "\u0998";   // ঘ
-            case "ch": return "\u099A";   // চ
-            case "Ch": return "\u099B";   // ছ
-            case "sh": return "\u09B6";   // শ
-            case "Sh": return "\u09B7";   // ষ
-            case "th": return "\u09A4";   // ত
-            case "Th": return "\u09A5";   // থ
-            case "dh": return "\u09A6";   // দ
-            case "Dh": return "\u09A7";   // ধ
-            case "ph": return "\u09AB";   // ফ
-            case "bh": return "\u09AD";   // ভ
-            case "rh": return "\u09DC";   // ড়
-            case "Rh": return "\u09DD";   // ঢ়
+            case "ngk": return "\u0999\u09CD\u0995"; // ঙ্ক
+            case "nth": return "\u09A8\u09CD\u09A5"; // ন্থ
+            case "nkh": return "\u09A8\u09CD\u0996"; // ন্খ
             default: return null;
         }
     }

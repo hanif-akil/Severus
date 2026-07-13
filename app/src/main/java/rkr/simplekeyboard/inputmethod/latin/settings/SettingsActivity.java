@@ -98,17 +98,24 @@ public class SettingsActivity extends PreferenceActivity {
         // Enable edge-to-edge rendering
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             getWindow().setDecorFitsSystemWindows(false);
-            final View container = (View) getListView().getParent().getParent();
-            container.setOnApplyWindowInsetsListener((view, windowInsets) -> {
-                android.graphics.Insets insets = windowInsets.getInsets(WindowInsets.Type.systemBars());
-                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                mlp.topMargin = insets.top;
-                mlp.leftMargin = insets.left;
-                mlp.bottomMargin = insets.bottom;
-                mlp.rightMargin = insets.right;
-                view.setLayoutParams(mlp);
-                return WindowInsets.CONSUMED;
-            });
+            final View list = getListView();
+            final View parent = list != null ? (View) list.getParent() : null;
+            final View container = parent != null ? (View) parent.getParent() : null;
+            if (container != null) {
+                container.setOnApplyWindowInsetsListener((view, windowInsets) -> {
+                    android.graphics.Insets insets = windowInsets.getInsets(WindowInsets.Type.systemBars());
+                    ViewGroup.LayoutParams lp = view.getLayoutParams();
+                    if (lp instanceof ViewGroup.MarginLayoutParams) {
+                        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+                        mlp.topMargin = insets.top;
+                        mlp.leftMargin = insets.left;
+                        mlp.bottomMargin = insets.bottom;
+                        mlp.rightMargin = insets.right;
+                        view.setLayoutParams(mlp);
+                    }
+                    return WindowInsets.CONSUMED;
+                });
+            }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().getDecorView().setSystemUiVisibility(
                     android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE

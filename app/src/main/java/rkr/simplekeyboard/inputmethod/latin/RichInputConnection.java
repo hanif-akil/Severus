@@ -379,11 +379,15 @@ public final class RichInputConnection {
     }
 
     public void copySelectedText() {
-        mIC.performContextMenuAction(android.R.id.copy);
+        if (isConnected()) {
+            mIC.performContextMenuAction(android.R.id.copy);
+        }
     }
 
     public void cutSelectedText() {
-        mIC.performContextMenuAction(android.R.id.cut);
+        if (isConnected()) {
+            mIC.performContextMenuAction(android.R.id.cut);
+        }
     }
 
     public void sendKeyEvent(final KeyEvent keyEvent) {

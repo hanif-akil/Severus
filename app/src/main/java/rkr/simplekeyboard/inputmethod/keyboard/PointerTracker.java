@@ -35,6 +35,7 @@ import rkr.simplekeyboard.inputmethod.latin.common.Constants;
 import rkr.simplekeyboard.inputmethod.latin.common.CoordinateUtils;
 import rkr.simplekeyboard.inputmethod.latin.define.DebugFlags;
 import rkr.simplekeyboard.inputmethod.latin.settings.Settings;
+import rkr.simplekeyboard.inputmethod.latin.settings.SettingsValues;
 
 public final class PointerTracker implements PointerTrackerQueue.Element {
     private static final String TAG = PointerTracker.class.getSimpleName();
@@ -753,7 +754,8 @@ public final class PointerTracker implements PointerTrackerQueue.Element {
             return;
         }
         // Handle long-press C/V/X for Copy/Paste/Cut when enabled
-        if (Settings.getInstance().getCurrent().mLongPressCvxEnabled) {
+        final SettingsValues settingsValues = Settings.getInstance().getCurrent();
+        if (settingsValues != null && settingsValues.mLongPressCvxEnabled) {
             final int code = key.getCode();
             final int longPressCode;
             if (code == 'c' || code == 'C') {

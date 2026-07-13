@@ -20,6 +20,7 @@ package rkr.simplekeyboard.inputmethod.latin;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,8 +47,16 @@ public final class InputView extends FrameLayout {
         void onNumPadClicked();
     }
 
+    public InputView(final Context context) {
+        super(context);
+    }
+
     public InputView(final Context context, final AttributeSet attrs) {
         super(context, attrs, 0);
+    }
+
+    public InputView(final Context context, final AttributeSet attrs, final int defStyle) {
+        super(context, attrs, defStyle);
     }
 
     @Override

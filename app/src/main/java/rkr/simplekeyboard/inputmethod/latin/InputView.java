@@ -59,23 +59,29 @@ public final class InputView extends FrameLayout {
         mNumPadButton = findViewById(R.id.toolbar_numpad);
         mClipboardPopupContainer = findViewById(R.id.clipboard_popup_container);
 
-        mClipboardButton.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onClipboardClicked();
-            }
-        });
+        if (mClipboardButton != null) {
+            mClipboardButton.setOnClickListener(v -> {
+                if (mListener != null) {
+                    mListener.onClipboardClicked();
+                }
+            });
+        }
 
-        mSettingsButton.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onSettingsClicked();
-            }
-        });
+        if (mSettingsButton != null) {
+            mSettingsButton.setOnClickListener(v -> {
+                if (mListener != null) {
+                    mListener.onSettingsClicked();
+                }
+            });
+        }
 
-        mNumPadButton.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onNumPadClicked();
-            }
-        });
+        if (mNumPadButton != null) {
+            mNumPadButton.setOnClickListener(v -> {
+                if (mListener != null) {
+                    mListener.onNumPadClicked();
+                }
+            });
+        }
     }
 
     public void setOnToolbarActionListener(final OnToolbarActionListener listener) {

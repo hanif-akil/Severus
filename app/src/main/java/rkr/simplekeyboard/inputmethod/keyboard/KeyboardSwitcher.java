@@ -26,6 +26,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 
 import rkr.simplekeyboard.inputmethod.R;
 import rkr.simplekeyboard.inputmethod.event.Event;
@@ -384,22 +385,20 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
         mKeyboardView = currentInputView.findViewById(R.id.keyboard_view);
         mKeyboardView.setKeyboardActionListener(mLatinIME);
 
-        currentInputView.setOnToolbarActionListener(new InputView.OnToolbarActionListener() {
-            @Override
-            public void onClipboardClicked() {
-                mLatinIME.showClipboardManager();
-            }
+        // Wire up toolbar button click listeners directly
+        final ImageView clipboardBtn = currentInputView.findViewById(R.id.toolbar_clipboard);
+        final ImageView settingsBtn = currentInputView.findViewById(R.id.toolbar_settings);
+        final ImageView numpadBtn = currentInputView.findViewById(R.id.toolbar_numpad);
 
-            @Override
-            public void onSettingsClicked() {
-                mLatinIME.launchSettings();
-            }
-
-            @Override
-            public void onNumPadClicked() {
-                mLatinIME.toggleNumPad();
-            }
-        });
+        if (clipboardBtn != null) {
+            clipboardBtn.setOnClickListener(v -> mLatinIME.showClipboardManager());
+        }
+        if (settingsBtn != null) {
+            settingsBtn.setOnClickListener(v -> mLatinIME.launchSettings());
+        }
+        if (numpadBtn != null) {
+            numpadBtn.setOnClickListener(v -> mLatinIME.toggleNumPad());
+        }
 
         final SettingsValues settingsValues = Settings.getInstance().getCurrent();
         if (settingsValues != null) {

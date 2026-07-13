@@ -46,3 +46,6 @@ captures/
 *.jks
 
 .idea
+
+# Local migration guide (not for repo)
+KOTLIN_MIGRATION_GUIDE.md

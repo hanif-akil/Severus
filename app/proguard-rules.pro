@@ -1,22 +1,29 @@
 # Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /home/rkr/Android/Sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Add any project specific keep options here:
+# Keep IME service
+-keep class rkr.simplekeyboard.inputmethod.latin.LatinIME { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep settings fragments (referenced from XML android:fragment attributes)
+-keep class rkr.simplekeyboard.inputmethod.latin.settings.*Fragment { *; }
 
--keep class rkr.simplekeyboard.inputmethod.R
--keep class rkr.simplekeyboard.inputmethod.latin.settings.SettingsFragment
--keep class rkr.simplekeyboard.inputmethod.latin.settings.LanguagesSettingsFragment
--keep class rkr.simplekeyboard.inputmethod.latin.settings.SingleLanguageSettingsFragment
+# Keep settings activity (referenced from AndroidManifest.xml)
+-keep class rkr.simplekeyboard.inputmethod.latin.settings.SettingsActivity { *; }
+
+# Keep broadcast receiver (referenced from AndroidManifest.xml)
+-keep class rkr.simplekeyboard.inputmethod.latin.SystemBroadcastReceiver { *; }
+
+# Keep R class and resource IDs
+-keep class rkr.simplekeyboard.inputmethod.R { *; }
+-keep class rkr.simplekeyboard.inputmethod.R$* { *; }
+
+# Keep custom views referenced from XML layouts
+-keep class rkr.simplekeyboard.inputmethod.latin.InputView { *; }
+-keep class rkr.simplekeyboard.inputmethod.keyboard.MainKeyboardView { *; }
+-keep class rkr.simplekeyboard.inputmethod.keyboard.MoreKeysKeyboardView { *; }
+-keep class rkr.simplekeyboard.inputmethod.keyboard.internal.DrawingPreviewPlacerView { *; }
+-keep class rkr.simplekeyboard.inputmethod.keyboard.internal.KeyPreviewView { *; }
+
+# Keep custom preferences referenced from XML
+-keep class rkr.simplekeyboard.inputmethod.latin.settings.SeekBarDialogPreference { *; }
+-keep class rkr.simplekeyboard.inputmethod.latin.settings.ColorDialogPreference { *; }
+-keep class rkr.simplekeyboard.inputmethod.latin.settings.RadioButtonPreference { *; }
